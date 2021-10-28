@@ -4,79 +4,69 @@ Real Estate
 @endsection
 @section('content')
 
+<!-- Table section -->
 <div class="container-fluid">
   <div class="row">
     <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
 
-      <div class="clinic-s">
-        <div class="row py-4 container-fluid ">
-          <div class="col-md-12">
-            <div class="page-heading"> Clints</div>
-          </div>
-        </div>
-      </div>
-      <div class="page-header row py-4 justify-content-center">
-        <div class="col-md-9" style=" margin: 70px">
 
-          <div class="card card-small clinic-card">
+      <div class="page-header row py-1 justify-content-center">
+        <div class="col-md-9" style=" margin: 70px">
+          <div class="card card-small clinic-card d-flex">
             <div class="card-header border-bottom">
-               Clients
+              <div class="row">
+                <div class="col-md-6 ">
+                  <h2>Clients Data</h2>
+                </div>
+                <div class="col-md-6">
+                  <a href="{{route('customer.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Clients</a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
-              <form method="post" action="{{route('customer.store')}}">
-                @csrf
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Name</label>
-                    <input type="text" class="form-control" id="customer_name" name="name" placeholder="Name" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Phone Number</label>
-                    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Email</label>
-                    <input type="email" class="form-control" id="customer_email" name="customer_email" placeholder="Email" required>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <label class="mb-2 formlabel">Target Location</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="Target location" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Price Range</label>
-                    <input type="text" class="form-control" id="price_range" name="price_range" placeholder="Price Range" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">  </label>
-                    <input type="text" class="form-control" id="unit_size" name="unit_size" placeholder="Unit Size" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Cap Rate</label>
-                    <input type="text" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Price per door</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="Price per door" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Deal type</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="Deal type" required>
-                  </div>
-                  <div class="col-md-4">
-                    <label class="mb-2 formlabel">Image</label>
-                    <input type="file" class="pt-2" id="image" name="image" required>
-                  </div>
-                  
-                  </div>
-                 
-                <div class="form-row">
+              <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="th-sm">Name
+                    </th>
+                    <th class="th-sm">Email
+                    </th>
+                    <th class="th-sm">Phone Number
+                    </th>
+                    <th class="th-sm">Target Location
+                    </th>
+                    <th class="th-sm">Price Range
+                    </th>
+                    <th class="th-sm">Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($clients as $client)
+                  <tr>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->email}}</td>
+                    <td>{{$client->phone_number}}</td>
+                    <td>{{$client->target_location}}</td>
+                    <td>{{$client->price_range}}</td>
+                    <td>
+                      <a data-toggle="tooltip" href="{{route('customer.edit',$client->id)}}" title="Edit">
+                        <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">
+                      </a>
+                      <a data-toggle="tooltip" href="{{route('customer.show',$client->id)}}" title="View">
+                        <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
+                      </a>
+                      <form id="form_{{$client->id}}" action="{{route('customer.destroy',$client)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <a href="void:javascript" onclick="return false" id="{{$client->id}}" class="deleteclient"><span class="fa fa-trash"></span></a>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
 
-                  
-                  
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-add">Submit</button>
-              </form>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -84,6 +74,27 @@ Real Estate
     </main>
   </div>
 </div>
-</div>
+@endsection
+@section('script')
+<script>
+  $(document).on('click', '.deleteclient', function() {
+    var id = $(this).attr('id');
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        if (result.isConfirmed) {
+          $('#form_' + id + '').submit();
+        }
 
+      }
+    });
+  });
+</script>
 @endsection

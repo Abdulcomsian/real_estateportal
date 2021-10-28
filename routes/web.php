@@ -19,16 +19,11 @@ use PhpParser\Node\Expr\FuncCall;
 |
 */
 
-Route::resource('appointments', 'AppointmentController');
 Route::resource('/customer', 'CustomerController');
 Route::resource('/leads', 'LeadController');
-Route::get('/agents-create', 'AgentController@create');
-
-Route::get('/compaign/{id}', 'CustomerController@compaign');
-Route::post('/save-compaign', 'CustomerController@save_compaign')->name('save-compaign');
 Route::get('/', 'AdminController@index');
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
-Route::get('/profile', [HomeController::class, 'profile']);
+
 
 Auth::routes();
 
