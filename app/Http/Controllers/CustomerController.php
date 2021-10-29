@@ -114,7 +114,7 @@ class CustomerController extends Controller
     {
         try {
             $res = Clients::find($id)->delete();
-            toastr()->error('Client Deleted Successfully');
+            toastr()->success('Client Deleted Successfully');
             return redirect('/customer');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');

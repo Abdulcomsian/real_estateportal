@@ -45,12 +45,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Clients Search</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link " href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i><img src="{{asset('images/logout-icon.png')}}"></i>
                             <span>Log out</span>
