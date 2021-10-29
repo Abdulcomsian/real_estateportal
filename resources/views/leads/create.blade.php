@@ -28,7 +28,9 @@ Real Estate
                 <div class="form-row">
                   <div class="form-group col-md-8">
                     <label class="mb-2 formlabel">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                    <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Address" required>
+                    <input type="hidden" name="location_lat" value="">
+                    <input type="hidden" name="location_long" value="">
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Assign Lead</label>
@@ -41,7 +43,7 @@ Real Estate
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Market Location</label>
-                    <input type="text" class="form-control" id="markete_location" name="markete_location" placeholder="Market Location" required>
+                    <input type="text" class="form-control map-input" id="markete_location" name="markete_location" placeholder="Market Location" required>
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Ask Price</label>
@@ -85,7 +87,10 @@ Real Estate
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Status</label>
-                    <input type="text" class="form-control" id="status" name="status" placeholder="Status" required>
+                    <select class="form-control" id="status" name="status">
+                      <option value="0">Pending</option>
+                      <option value="1">Approved</option>
+                    </select>
                   </div>
                   <div class=" col-md-12">
                     <label class="mb-2 formlabel">Other documents:</label>
@@ -134,4 +139,81 @@ Real Estate
   </div>
 </div>
 
+@endsection
+@section('script')
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeHpSgm-hy0_G_NC6PynKEYgASntQIi1Y&libraries=places&callback=initMap" async defer></script>
+<script>
+  function initMap() {
+
+    let autocomplete_location;
+    let input_field = document.getElementById('autocomplete');
+    // geographical location types.
+    autocomplete_location = new google.maps.places.Autocomplete(input_field, {
+      types: ['geocode']
+    });
+    // Set initial restrict to the greater list of countries.
+    // autocomplete_location.setComponentRestrictions({'country': ['de']});
+    autocomplete_location.setFields(['geometry']);
+
+    let latitude;
+    let longitude;
+    let country;
+
+    google.maps.event.addListener(autocomplete_location, 'place_changed', function() {
+      let location = autocomplete_location.getPlace();
+      latitude = location.geometry.location.lat();
+      longitude = location.geometry.location.lng();
+      $('input[name="location_lat"]').val(latitude);
+      $('input[name="location_long"]').val(longitude);
+
+
+      codeLatLng(latitude, longitude);
+
+      function codeLatLng(lat, lng) {
+
+        var latlng = new google.maps.LatLng(lat, lng);
+        let geocoder = new google.maps.Geocoder;
+        geocoder.geocode({
+          'latLng': latlng
+        }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            let length = results.length - 1;
+            country = results[length].formatted_address;
+            console.log(results);
+
+            if (results[1]) {
+              //formatted address
+              //find country name
+              for (var i = 0; i < results[0].address_components.length; i++) {
+                for (var b = 0; b < results[0].address_components[i].types.length; b++) {
+                  //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+                  if (results[0].address_components[i].types[b] === "administrative_area_level_1") {
+                    state = results[0].address_components[i];
+                    break;
+                  }
+
+                  if (results[0].address_components[i].types[b] === "locality") {
+                    //this is the object you are looking for
+                    city = results[0].address_components[i];
+                    break;
+                  }
+                }
+              }
+              //city data
+              $('input[name="location_city"]').val(city.long_name);
+              $('input[name="location_country"]').val(country);
+              $('input[name="location_state"]').val(state.long_name);
+
+            } else {
+              console.log("No results found");
+            }
+          } else {
+            console.log("Geocoder failed due to: " + status);
+          }
+        })
+      }
+
+    });
+  }
+</script>
 @endsection

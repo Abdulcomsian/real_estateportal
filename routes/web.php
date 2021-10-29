@@ -21,8 +21,10 @@ use PhpParser\Node\Expr\FuncCall;
 
 Route::resource('/customer', 'CustomerController');
 Route::resource('/leads', 'LeadController');
-Route::get('/', 'AdminController@index');
+Route::get('leads/client/all/leads/{id}', 'LeadController@client_all_leads')->name('client.all.leads');
+Route::get('/lead/mapview/{id}', 'AppointmentController@index');
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
+Route::get('/', [AdminController::class, 'dashboard']);
 
 
 Auth::routes();

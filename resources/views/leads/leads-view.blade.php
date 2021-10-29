@@ -3,13 +3,10 @@
 Real Estate
 @endsection
 @section('content')
-
 <!-- Table section -->
 <div class="container-fluid">
   <div class="row">
     <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-
-
       <div class="page-header row py-1 justify-content-center">
         <div class="col-md-9" style=" margin: 70px">
           <div class="card card-small clinic-card d-flex">
@@ -53,11 +50,15 @@ Real Estate
                       <a data-toggle="tooltip" href="{{route('leads.show',$lead->id)}}" title="View">
                         <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
                       </a>
+                      <a data-toggle="tooltip" href="{{url('/lead/mapview',$lead->id)}}" title="client map view">
+                        <span class="fa fa-info-circle"></span>
+                      </a>
                       <form id="form_{{$lead->id}}" action="{{route('leads.destroy',$lead)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <a href="void:javascript" onclick="return false" id="{{$lead->id}}" class="deletelead"><span class="fa fa-trash"></span></a>
                       </form>
+
                     </td>
                   </tr>
                   @endforeach

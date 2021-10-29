@@ -180,4 +180,15 @@ class LeadController extends Controller
         $file->move('leads-documents/', $name);
         return $name;
     }
+    //clients all leads
+    public function client_all_leads($id)
+    {
+        try {
+            $leads = Lead::where('client_id', $id)->get();
+            return view('leads.client-all-leads', ['leads' => $leads]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
 }

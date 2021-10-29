@@ -35,6 +35,8 @@ class CreateLeadsTable extends Migration
             $table->string('t3_file')->nullable();
             $table->string('covid_file')->nullable();
             $table->string('capx_file')->nullable();
+            $table->string('location_lat')->nullable();
+            $table->string('location_long')->nullable();
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->bigInteger('user_id')->unsigned();

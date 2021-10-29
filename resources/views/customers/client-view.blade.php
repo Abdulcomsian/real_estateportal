@@ -56,6 +56,9 @@ Real Estate
                       <a data-toggle="tooltip" href="{{route('customer.show',$client->id)}}" title="View">
                         <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
                       </a>
+                      <a data-toggle="tooltip" href="{{route('client.all.leads',$client->id)}}" title="Client All Leads">
+                        <span class="fa fa-list"></span>
+                      </a>
                       <form id="form_{{$client->id}}" action="{{route('customer.destroy',$client)}}" method="POST">
                         @csrf
                         @method('DELETE')

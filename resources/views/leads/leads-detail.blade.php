@@ -22,7 +22,7 @@ Real Estate
               </div>
             </div>
             <div class="card-body">
-              <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+              <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th class="th-sm">Address</th>
@@ -50,7 +50,7 @@ Real Estate
                     <td class="td-sm">{{$lead->pro_forma}}</td>
                     <td class="td-sm">{{$lead->renovations}}</td>
                     <td class="td-sm">{{$lead->broker_contact}}</td>
-                    <td class="td-sm">{{$lead->status}}</td>
+                    <td class="td-sm">@if($lead->status==0){{'Pending'}}@else{{'Approved'}}@endif</td>
                   </tr>
                 </tbody>
               </table>
