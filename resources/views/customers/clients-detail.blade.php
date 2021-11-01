@@ -1,7 +1,7 @@
 
 @extends('layouts.master')
 @section('title')
-Real Estate
+Zellaray Capital
 @endsection
 @section('content')
 
