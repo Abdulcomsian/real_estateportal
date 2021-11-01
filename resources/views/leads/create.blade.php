@@ -36,7 +36,7 @@ Real Estate
                 <div class="form-row">
                   <div class="form-group col-md-8">
                     <label class="mb-2 formlabel">Address</label>
-                    <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Address">
+                    <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Address" required>
                     <input type="hidden" name="location_lat" value="">
                     <input type="hidden" name="location_long" value="">
                     @if($errors->has('address'))
