@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Zine Collective | International Marketing
+Zellaray Capital
 @endsection
 @section('css')
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
