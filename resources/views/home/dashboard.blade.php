@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Zine Collective | International Marketing
+Zellaray Capital
 @endsection
 @section('content')
 
