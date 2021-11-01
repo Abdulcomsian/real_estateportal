@@ -116,9 +116,9 @@
 
                         <div class="flex-sb-m w-full mb-5 pt-3">
                             <div class="forgot-col">
-                                <a href="{{ route('password.request') }}" class="txt1 pt-1">
+                                <!-- <a href="{{ route('password.request') }}" class="txt1 pt-1">
                                     Forgot Password?
-                                </a>
+                                </a> -->
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
                         </div>
                     </form>
 
-                    <div class="login100-more" style="background-image: url('images/MicrosoftTeams-image.png">
+                    <div class="login100-more" style="background-image: url('images/real_estate.jpg">
                     </div>
                 </div>
             </div>
