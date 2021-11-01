@@ -37,6 +37,15 @@ class LeadController extends Controller
     //store data
     public function store(Request $request)
     {
+        $request->validate([
+            'address' => ['required'],
+            'markete_location' => ['required'],
+            'ask_price' => ['required', 'integer'],
+            'price_per_door' => ['required', 'integer'],
+            'gross_revenue' => ['required', 'integer'],
+            'noi' => ['required'],
+            'cap_rate' => ['required', 'integer'],
+        ]);
         try {
             $input = $request->except('_token', 'image');
             $input['user_id'] = Auth::user()->id;
@@ -110,6 +119,15 @@ class LeadController extends Controller
     //update lead data
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'address' => ['required'],
+            'markete_location' => ['required'],
+            'ask_price' => ['required', 'integer'],
+            'price_per_door' => ['required', 'integer'],
+            'gross_revenue' => ['required', 'integer'],
+            'noi' => ['required'],
+            'cap_rate' => ['required', 'integer'],
+        ]);
         try {
             $leaddata = Lead::find($id);
             $input = $request->except('_token', '_method');
