@@ -20,14 +20,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        $totalcustomers = User::where('role', 'customer')->count();
-        $total_app = Appointment::count();
-        return view('home.dashboard', compact('totalcustomers', 'total_app'));
+        $totalcustomers = User::where('role', 'admin')->count();
+        return view('home.dashboard', compact('totalcustomers'));
     }
     public function dashboard()
     {
-        $totalcustomers = User::where('role', 'customer')->count();
-        $total_app = Appointment::count();
-        return view('home.dashboard', compact('totalcustomers', 'total_app'));
+        $totalcustomers = User::where('role', 'admin')->count();
+        return view('home.dashboard', compact('totalcustomers'));
     }
 }

@@ -34,8 +34,8 @@ Zine Collective | International Marketing
                 <div class="d-flex align-content-center align-middle bd-highlight">
                   <div class="icon2 text-center"><img src="images/deadline.png"></div>
                   <div class="flex-grow-1 valtop">
-                    <div class="heading2">Total Agents</div>
-                    <div class="cont-val">{{$total_app}}</div>
+                    <div class="heading2">Total Leads</div>
+                    <div class="cont-val">0</div>
                   </div>
                 </div>
               </div>

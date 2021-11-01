@@ -12,7 +12,7 @@
     <link rel="stylesheet" id="bootstrap-stylesheet" data-version="1.1.0" href="{{asset('styles/bootstrap.min.css')}}">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{asset('styles/dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('styles/extras.1.1.0.min.css')}}">
-    <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
+    <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
     @toastr_css
@@ -22,34 +22,25 @@
 <body class="h-100">
 
 
-@include("layouts.header")
-@include("layouts.sidebar")
+    @include("layouts.header")
+    @include("layouts.sidebar")
 
-@yield('content')
+    @yield('content')
 
-@include('layouts.footer')
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="{{asset('scripts/bootstrap.min.js')}}"></script>
-{{--<script src="{{asset('scripts/Chart.bundle.js')}}"></script>--}}
-<script src="{{asset('scripts/shards.min.js')}}"></script>
-<script src="{{asset('scripts/jquery.sharrre.min.js')}}"></script>
-{{--<script src="{{asset('scripts/dashboards.1.1.0.min.js')}}"></script>--}}
-{{--<script src="{{asset('scripts/app/app-chart.js')}}"></script>--}}
-<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
-<script src="{{asset('scripts/table.js')}}"></script>
+    @include('layouts.footer')
 
 
-
-@toastr_js
-@toastr_render
-@yield('script')
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="{{asset('scripts/bootstrap.min.js')}}"></script>
+    <script src="{{asset('scripts/shards.min.js')}}"></script>
+    <script src="{{asset('scripts/jquery.sharrre.min.js')}}"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('scripts/table.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @toastr_js
+    @toastr_render
+    @yield('script')
 </body>
 
 </html>

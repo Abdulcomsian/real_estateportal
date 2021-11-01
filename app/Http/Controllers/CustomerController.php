@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Clients;
+use Auth;
 
 class CustomerController extends Controller
 {
@@ -15,16 +17,13 @@ class CustomerController extends Controller
     public function index()
     {
         try {
-            $customers = User::where('role', 'customer')->get();
-            return view('customers.view_customer', compact('customers'));
+            $clients = Clients::get();
+            return view('customers.client-view', compact('clients'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
         }
     }
-
-    
-
     public function create()
     {
         try {
@@ -34,43 +33,89 @@ class CustomerController extends Controller
             return back();
         }
     }
-
     public function store(Request $request)
     {
         try {
-            $user = new User();
-            $user->name = $request->customer_name;
-            $user->email = $request->customer_email;
-            $user->phone_number = $request->phone_number;
-            $user->role = "customer";
-            $user->email_verified_at = date('Y-m-d h:i:s');
-            $user->password = Hash::make($request->password);
-            if ($user->save()) {
-                toastr()->success('Customer Created Successfully!!');
-                return back();
+            $input = $request->except('_token', 'image');
+            $input['user_id'] = Auth::user()->id;
+            if ($file = $request->file('image')) {
+                $path = 'client-images/';
+                if (!file_exists(public_path() . '/' . $path)) {
+                    $path = 'client-images/';
+                    File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                }
+                $name = time() . $file->getClientOriginalName();
+                $file->move('client-images/', $name);
+                $input['file'] = $name;
+            }
+
+            $res = Clients::create($input);
+            if ($res) {
+                toastr()->success('Client Created Successfully!!');
+                return redirect('/customer');
             }
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
         }
     }
-    public function compaign($id)
+    public function show($id)
     {
         try {
-            return view('customers.compaign', compact('id'));
+            $client = Clients::find($id);
+            return view('customers.clients-detail', compact('client'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
         }
     }
-    public function save_compaign(Request $request)
+    public function edit($id)
     {
         try {
-            User::find($request->customerid)->update([
-                'compaign_link' => $request->link
-            ]);
-            toastr()->success('Compaign Link save successfully!!!');
+            $client = Clients::find($id);
+            return view('customers.edit_clients', compact('client'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
             return back();
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            $input = $request->except('_token', 'image', '_method');
+            $input['user_id'] = Auth::user()->id;
+            if ($file = $request->file('image')) {
+                $path = 'client-images/';
+                if (!file_exists(public_path() . '/' . $path)) {
+                    $path = 'client-images/';
+                    File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                }
+                $client = Clients::find($id);
+                if ($client->file) //if already resume unlink resume and upload new one
+                {
+                    unlink(public_path() . '/client-images/' . $client->file);
+                }
+                $name = time() . $file->getClientOriginalName();
+                $file->move('client-images/', $name);
+                $input['file'] = $name;
+            }
+
+            $res = Clients::where('id', $id)->update($input);
+            if ($res) {
+                toastr()->success('Client Updated Successfully!!');
+                return redirect('/customer');
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    public function destroy($id)
+    {
+        try {
+            $res = Clients::find($id)->delete();
+            toastr()->success('Client Deleted Successfully');
+            return redirect('/customer');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

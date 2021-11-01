@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('customer.create')}}">
+                        <a class="nav-link" href="{{route('customer.index')}}">
                             <i><img src="{{asset('images/png/user.png')}}"></i>
                             <span>Clients</span>
                         </a>
@@ -44,20 +44,6 @@
                             <span>Leads</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('appointments.index')}}">
-                            <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Clients Search</span>
-                        </a>
-                    </li>
-                   
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('agents-create')}}">
-                            <i><img src="{{asset('images/png/agent.png')}}"></i>
-                            <span>Agents</span>
-                        </a>
-                    </li>
-                    
                     <li class="nav-item">
                         <a class="nav-link " href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i><img src="{{asset('images/logout-icon.png')}}"></i>
