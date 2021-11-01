@@ -34,8 +34,8 @@ Zine Collective | International Marketing
                                 <div class="courses-item pt-3">
                                     <div class="courses-grid">
                                         <div class="img-part">
-                                            <a onclick="openmodal('{{json_encode($le)}}')" href="#"><img src="
-                                                @if($le->file){{asset('client-images').'/'.$le->file}}@else{{'https://www.pinclipart.com/picdir/middle/541-5416602_dummy-profile-image-url-clipart.png'}}@endif" alt="img" class="img-fluid"></a>
+                                            <a onclick="openmodal('{{json_encode($le)}}')" href="#">
+                                             <img src="@if($le->file){{asset('client-images').'/'.$le->file}}@else{{asset('images/110-1102927_create-your-profile-user-icon-white-color-hd.png')}}@endif" alt="img" class="img-fluid"></a>
                                         </div>
                                         <div class="content-part" style="height: 314px">
                                             <div class="info-meta">
@@ -85,6 +85,7 @@ Zine Collective | International Marketing
                                                 <div class="modal-body py-0">
                                                     <div class="d-flex main-content">
                                                         <input type="hidden" id="publicurl" value="{{asset('client-images')}}">
+                                                         <input type="hidden" id="publicurl1" value="{{asset('images')}}">
                                                         <div class="bg-image promo-img mr-3" id="bgimage"style="">
                                                             <span class="price" id="modalprice">$249,900</span>
                                                         </div>
@@ -164,8 +165,15 @@ Zine Collective | International Marketing
 <script>
     function openmodal(lead) {
         lead=JSON.parse(lead);
-        publicurl=$("#publicurl").val();
+        
+        if(lead.file)
+        {
+          publicurl=$("#publicurl").val();
         $("#bgimage").css({'background-image':'url('+publicurl+'/'+lead.file+')','background-repeat': 'no-repeat','background-size'  : 'cover'});
+        }else{
+            publicurl1=$("#publicurl1").val();
+            $("#bgimage").css({'background-image':'url('+publicurl1+'/110-1102927_create-your-profile-user-icon-white-color-hd.png)','background-repeat': 'no-repeat','background-size'  : 'cover'});
+        } 
         $("#mmarkete_location").text(lead.markete_location);
         $("#modalprice").text('$'+lead.ask_price);
         $("#modaladdress").text(lead.address);

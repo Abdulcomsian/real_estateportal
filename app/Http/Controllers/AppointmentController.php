@@ -20,9 +20,7 @@ class AppointmentController extends Controller
         try {
             $lead = Lead::leftJoin('clients', 'clients.id', '=', 'leads.client_id')
                 ->select('leads.*', 'leads.id as leadid', 'leads.cap_rate as leadcap_rate', 'leads.price_per_door as leadpricedoor', 'clients.*')
-
                 ->paginate(2);
-                dd($lead);
             return view('appointments.index', compact('lead'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
