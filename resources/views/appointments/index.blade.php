@@ -237,9 +237,14 @@ Zine Collective | International Marketing
             success:function(res)
             {
                  var lead=JSON.parse( res );
-                 console.log(lead);
-                publicurl=$("#publicurl").val();
-                 $("#bgimage").css({'background-image':'url('+publicurl+'/'+lead[0].file+')','background-repeat': 'no-repeat','background-size'  : 'cover'});
+                  if(lead.file)
+                    {
+                      publicurl=$("#publicurl").val();
+                    $("#bgimage").css({'background-image':'url('+publicurl+'/'+lead[0].file+')','background-repeat': 'no-repeat','background-size'  : 'cover'});
+                    }else{
+                        publicurl1=$("#publicurl1").val();
+                        $("#bgimage").css({'background-image':'url('+publicurl1+'/110-1102927_create-your-profile-user-icon-white-color-hd.png)','background-repeat': 'no-repeat','background-size'  : 'cover'});
+                    } 
                 $("#mmarkete_location").text(lead[0].markete_location);
                 $("#modalprice").text('$'+lead[0].ask_price);
                 $("#modaladdress").text(lead[0].address);
