@@ -18,10 +18,10 @@ class AppointmentController extends Controller
     public function index()
     {
         try {
-            $lead = DB::table('leads')
-                ->select('leads.*', 'leads.id as leadid', 'clients.*')
-                ->join('clients', 'clients.id', '=', 'leads.client_id')
-                ->paginate(3);
+            $lead = Lead::leftJoin('clients', 'clients.id', '=', 'leads.client_id')
+                ->select('leads.*', 'leads.id as leadid', 'leads.cap_rate as leadcap_rate', 'leads.price_per_door as leadpricedoor', 'clients.*')
+
+                ->paginate(2);
             return view('appointments.index', compact('lead'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
@@ -30,14 +30,13 @@ class AppointmentController extends Controller
     }
     public function get_lead_details(Request $request)
     {
-        $id=$request->id;
-       try {
-            $lead = DB::table('leads')
-                ->select('leads.*', 'leads.id as leadid', 'clients.*')
-                ->join('clients', 'clients.id', '=', 'leads.client_id')
-                ->where('leads.id',$id)
+        $id = $request->id;
+        try {
+            $lead = Lead::leftJoin('clients', 'clients.id', '=', 'leads.client_id')
+                ->select('leads.*', 'leads.id as leadid', 'leads.cap_rate as leadcap_rate', 'leads.price_per_door as leadpricedoor', 'clients.*')
+                ->where('leads.id', $id)
                 ->get();
-           echo json_encode($lead);
+            echo json_encode($lead);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

@@ -34,7 +34,7 @@ Zine Collective | International Marketing
                                 <div class="courses-item pt-3">
                                     <div class="courses-grid">
                                         <div class="img-part">
-                                            <a onclick="openmodal('{{json_encode($le)}}')" href="#"><img src="{{asset('client-images').'/'.$le->file}}" alt="img" class="img-fluid"></a>
+                                            <a onclick="openmodal('{{json_encode($le)}}')" href="#"><img src="{{asset('client-images').'/'.$le->file ?? ''}}" alt="img" class="img-fluid"></a>
                                         </div>
                                         <div class="content-part" style="height: 314px">
                                             <div class="info-meta">
@@ -90,33 +90,33 @@ Zine Collective | International Marketing
                                                         <div class="content-text p-4 px-5 align-item-stretch">
                                                             <div>
                                                                 <a href="#" class="share"><span class="icon-share"></span></a>
-                                                                <h3 class="mb-3 line text-center">Emerald lakes</h3>
+                                                                <h3 class="mb-3 line text-center" id="mmarkete_location">Emerald lakes</h3>
                                                                 <table class="table table-bordered">
 
                                                                     <tbody>
                                                                         <tr>
-                                                                            <th scope="row">Name</th>
-                                                                            <td id="modalname">abc</td>
+                                                                            <th scope="row">Address</th>
+                                                                            <td id="modaladdress">abc</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row"> phone number</th>
-                                                                            <td id="modalphone">>034004030303</td>
+                                                                            <th scope="row"> Ask Price</th>
+                                                                            <td id="modalaskprice">034004030303</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row" >Email</th>
-                                                                            <td id="modalemail">>abc@gmail.com</td>
+                                                                            <th scope="row" >gross_revenue</th>
+                                                                            <td id="modalgross_revenue">>abc@gmail.com</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row">Traget location</th>
-                                                                            <td id="modallocation">Pindi</td>
+                                                                            <th scope="row">NOI</th>
+                                                                            <td id="modalnoi">Pindi</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row">Price Range</th>
-                                                                            <td id="modalpricerange">$50000</td>
+                                                                            <th scope="row">occupancy</th>
+                                                                            <td id="modaloccupancy">$50000</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row">Unit Size</th>
-                                                                            <td id="modalunitsize">150 feet</td>
+                                                                            <th scope="row">asset_class</th>
+                                                                            <td id="modalasset_class">150 feet</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="row">Cap Rate</th>
@@ -127,8 +127,8 @@ Zine Collective | International Marketing
                                                                             <td id="modalpriceperdoor">Price per door</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th scope="row">Deal Type</th>
-                                                                            <td id="modaldealtype">Deal type</td>
+                                                                            <th scope="row">Assign To</th>
+                                                                            <td id="modalassignto"></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -144,15 +144,14 @@ Zine Collective | International Marketing
                                 </div>
                             </div>
                             @endforeach
-
+                             <div class="col-md-6"></div>
+                             <div class="col-md-6 d-flex justify-content-center" style="margin-bottom:10px">
+                                 {{$lead->links("pagination::bootstrap-4")}}
+                            </div>
                         </div>
                        
                     </div>
-                     <br>
-                       
-                        {{$lead->links("pagination::bootstrap-4")}}
-                        
-                        <br>
+
                 </div>
             </div>
         </main>
@@ -166,16 +165,16 @@ Zine Collective | International Marketing
         lead=JSON.parse(lead);
         publicurl=$("#publicurl").val();
         $("#bgimage").css({'background-image':'url('+publicurl+'/'+lead.file+')','background-repeat': 'no-repeat','background-size'  : 'cover'});
+        $("#mmarkete_location").text(lead.markete_location);
         $("#modalprice").text('$'+lead.ask_price);
-        $("#modalname").text(lead.name);
-        $("#modalphone").text(lead.phone_number);
-        $("#modalemail").text(lead.email);
-        $("#modallocation").text(lead.target_location);
-        $("#modalpricerange").text('$'+lead.price_range);
-        $("#modalunitsize").text(lead.unit_size);
-        $("#modalcaprate").text(lead.cap_rate);
-        $("#modalpriceperdoor").text(lead.price_per_door);
-        $("#modaldealtype").text(lead.deal_type);
+        $("#modaladdress").text(lead.address);
+        $("#modalgross_revenue").text('$'+lead.gross_revenue);
+        $("#modalnoi").text(lead.noi);
+        $("#modaloccupancy").text('$'+lead.occupancy);
+        $("#modalasset_class").text(lead.asset_class);
+        $("#modalcaprate").text('$'+lead.leadcap_rate);
+        $("#modalpriceperdoor").text('$'+lead.leadpricedoor);
+        $("#modalassignto").text(lead.name);
         $("#exampleModalCenter").modal();
     }
 </script>
@@ -232,16 +231,17 @@ Zine Collective | International Marketing
                  console.log(lead);
                 publicurl=$("#publicurl").val();
                  $("#bgimage").css({'background-image':'url('+publicurl+'/'+lead[0].file+')','background-repeat': 'no-repeat','background-size'  : 'cover'});
+                $("#mmarkete_location").text(lead[0].markete_location);
                 $("#modalprice").text('$'+lead[0].ask_price);
-                $("#modalname").text(lead[0].name);
-                $("#modalphone").text(lead[0].phone_number);
-                $("#modalemail").text(lead[0].email);
-                $("#modallocation").text(lead[0].target_location);
-                $("#modalpricerange").text('$'+lead[0].price_range);
-                $("#modalunitsize").text(lead[0].unit_size);
-                $("#modalcaprate").text(lead[0].cap_rate);
-                $("#modalpriceperdoor").text(lead[0].price_per_door);
-                $("#modaldealtype").text(lead[0].deal_type);
+                $("#modaladdress").text(lead[0].address);
+                $("#modalaskprice").text('$'+lead[0].ask_price);
+                $("#modalgross_revenue").text('$'+lead[0].gross_revenue);
+                $("#modalnoi").text(lead[0].noi);
+                $("#modaloccupancy").text('$'+lead[0].occupancy);
+                $("#modalasset_class").text(lead[0].asset_class);
+                $("#modalcaprate").text('$'+lead[0].leadcap_rate);
+                $("#modalpriceperdoor").text('$'+lead[0].leadpricedoor);
+                $("#modalassignto").text(lead[0].name);
                 $("#exampleModalCenter").modal();
             }
         })
