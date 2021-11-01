@@ -93,9 +93,8 @@ class LeadController extends Controller
     public function show($id)
     {
         try {
-            $lead = DB::table('leads')
-                ->select('leads.*', 'leads.id as leadid', 'clients.*')
-                ->join('clients', 'clients.id', '=', 'leads.client_id')
+            $lead = Lead::leftJoin('clients', 'clients.id', '=', 'leads.client_id')
+                ->select('leads.*', 'leads.id as leadid', 'leads.cap_rate as leadcap_rate', 'leads.price_per_door as leadpricedoor', 'clients.*')
                 ->where('leads.id', $id)
                 ->paginate(20);
             return view('appointments.index', compact('lead'));
