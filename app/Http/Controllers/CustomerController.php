@@ -139,6 +139,11 @@ class CustomerController extends Controller
             toastr()->success('Client Deleted Successfully');
             return redirect('/customer');
         } catch (\Exception $exception) {
+            if($exception->getCode()==23000)
+            {
+                toastr()->error('Client cant be deleted. client is associated to a lead ');
+                return back();
+            }
             toastr()->error('Something went wrong, try again');
             return back();
         }
