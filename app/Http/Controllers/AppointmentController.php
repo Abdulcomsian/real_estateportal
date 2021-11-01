@@ -15,14 +15,29 @@ class AppointmentController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id)
+    public function index()
     {
         try {
             $lead = DB::table('leads')
+                ->select('leads.*', 'leads.id as leadid', 'clients.*')
                 ->join('clients', 'clients.id', '=', 'leads.client_id')
-                ->where('leads.id', $id)
-                ->get();
+                ->paginate(3);
             return view('appointments.index', compact('lead'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    public function get_lead_details(Request $request)
+    {
+        $id=$request->id;
+       try {
+            $lead = DB::table('leads')
+                ->select('leads.*', 'leads.id as leadid', 'clients.*')
+                ->join('clients', 'clients.id', '=', 'leads.client_id')
+                ->where('leads.id',$id)
+                ->get();
+           echo json_encode($lead);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

@@ -50,9 +50,6 @@ Real Estate
                                             <a data-toggle="tooltip" href="{{route('leads.show',$lead->id)}}" title="View">
                                                 <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
                                             </a>
-                                            <a data-toggle="tooltip" href="{{url('/lead/mapview',$lead->id)}}" title="Client Map View">
-                                                <span class="fa fa-info-circle"></span>
-                                            </a>
                                             <form id="form_{{$lead->id}}" action="{{route('leads.destroy',$lead)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

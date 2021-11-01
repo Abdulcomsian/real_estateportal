@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Lead;
 use App\Models\Clients;
 use Illuminate\Http\Request;
+use DB;
 
 use Auth;
 
@@ -83,8 +84,12 @@ class LeadController extends Controller
     public function show($id)
     {
         try {
-            $lead = Lead::find($id);
-            return view('leads.leads-detail', compact('lead'));
+            $lead = DB::table('leads')
+                ->select('leads.*', 'leads.id as leadid', 'clients.*')
+                ->join('clients', 'clients.id', '=', 'leads.client_id')
+                ->where('leads.id', $id)
+                ->paginate(20);
+            return view('appointments.index', compact('lead'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
