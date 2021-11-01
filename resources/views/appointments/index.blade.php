@@ -187,7 +187,7 @@ Zine Collective | International Marketing
         $("#exampleModalCenter").modal();
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeHpSgm-hy0_G_NC6PynKEYgASntQIi1Y&libraries=places&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGZsEuXCZJyg8-h8jmSFpLUiXd9BIJsew&libraries=places&callback=initMap" async defer></script>
 <script>
     var directionsDisplay,
         directionsService,
