@@ -2,6 +2,14 @@
 @section('title')
 Real Estate
 @endsection
+@section('css')
+<style>
+  .error {
+    height: auto;
+    color: red;
+  }
+</style>
+@endsection
 @section('content')
 
 <div class="container-fluid">
@@ -20,7 +28,7 @@ Real Estate
 
           <div class="card card-small clinic-card">
             <div class="card-header border-bottom">
-               Clients
+              Clients
             </div>
             <div class="card-body">
               <form method="post" action="{{route('customer.store')}}" enctype="multipart/form-data">
@@ -29,50 +37,80 @@ Real Estate
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Name</label>
                     <input type="text" class="form-control" id="customer_name" name="name" placeholder="Name" required>
+                    @if($errors->has('name'))
+                    <div class="error">{{ $errors->first('name') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Phone Number</label>
                     <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" required>
+                    @if($errors->has('phone_number'))
+                    <div class="error">{{ $errors->first('phone_number') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    @if($errors->has('email'))
+                    <div class="error">{{ $errors->first('email') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-12">
                     <label class="mb-2 formlabel">Target Location</label>
                     <input type="text" class="form-control" id="target_location" name="target_location" placeholder="Target location" required>
+                    @if($errors->has('target_location'))
+                    <div class="error">{{ $errors->first('target_location') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Price Range</label>
                     <input type="number" class="form-control" id="price_range" name="price_range" placeholder="Price Range" required>
+                    @if($errors->has('price_range'))
+                    <div class="error">{{ $errors->first('price_range') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Unit Size</label>
                     <input type="number" class="form-control" id="unit_size" name="unit_size" placeholder="Unit Size" required>
+                    @if($errors->has('unit_size'))
+                    <div class="error">{{ $errors->first('unit_size') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Cap Rate</label>
                     <input type="number" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate" required>
+                    @if($errors->has('cap_rate'))
+                    <div class="error">{{ $errors->first('cap_rate') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Price per door</label>
                     <input type="number" class="form-control" id="price_per_door" name="price_per_door" placeholder="Price per door" required>
+                    @if($errors->has('price_per_door'))
+                    <div class="error">{{ $errors->first('price_per_door') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Deal type</label>
                     <input type="text" class="form-control" id="deal_type" name="deal_type" placeholder="Deal type" required>
+                    @if($errors->has('deal_type'))
+                    <div class="error">{{ $errors->first('deal_type') }}</div>
+                    @endif
                   </div>
                   <div class="col-md-4">
                     <label class="mb-2 formlabel">Image</label>
-                    <input type="file" class="pt-2" id="image" name="image" required>
+                    <input type="file" class="pt-2" id="image" name="image" required accept="image/*">
+                    @if($errors->has('image'))
+                    <div class="error">{{ $errors->first('image') }}</div>
+                    @endif
                   </div>
-                  
-                  </div>
-                 
+
+                </div>
+
                 <div class="form-row">
 
-                  
-                  
+
+
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-add">Submit</button>

@@ -65,7 +65,7 @@ Real Estate
                                     </div>
                                     <div class="col-md-4">
                                         <label class="mb-2 formlabel">Image</label>
-                                        <input type="file" class="pt-2" id="image" name="image">
+                                        <input type="file" class="pt-2" id="image" name="image" accept="image/*">
                                     </div>
 
                                 </div>

@@ -2,6 +2,14 @@
 @section('title')
 Real Estate
 @endsection
+@section('css')
+<style>
+  .error {
+    height: auto;
+    color: red;
+  }
+</style>
+@endsection
 @section('content')
 
 <div class="container-fluid">
@@ -31,6 +39,9 @@ Real Estate
                     <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Address" required>
                     <input type="hidden" name="location_lat" value="">
                     <input type="hidden" name="location_long" value="">
+                    @if($errors->has('address'))
+                    <div class="error">{{ $errors->first('address') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Assign Lead</label>
@@ -44,26 +55,44 @@ Real Estate
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Market Location</label>
                     <input type="text" class="form-control map-input" id="markete_location" name="markete_location" placeholder="Market Location" required>
+                    @if($errors->has('markete_location'))
+                    <div class="error">{{ $errors->first('markete_location') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Ask Price</label>
                     <input type="number" class="form-control" id="ask_price" name="ask_price" placeholder="Ask Price" required>
+                    @if($errors->has('ask_price'))
+                    <div class="error">{{ $errors->first('ask_price') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Price Per Door</label>
                     <input type="number" class="form-control" id="price_per_door" name="price_per_door" placeholder="Price per door" required>
+                    @if($errors->has('price_per_door'))
+                    <div class="error">{{ $errors->first('price_per_door') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Gross Revenue</label>
                     <input type="number" class="form-control" id="gross_revenue" name="gross_revenue" placeholder="Gross Revenue" required>
+                    @if($errors->has('gross_revenue'))
+                    <div class="error">{{ $errors->first('gross_revenue') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">NOI</label>
                     <input type="text" class="form-control" id="noi" name="noi" placeholder="NOI" required>
+                    @if($errors->has('noi'))
+                    <div class="error">{{ $errors->first('noi') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Cap Rate</label>
                     <input type="number" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate" required>
+                    @if($errors->has('cap_rate'))
+                    <div class="error">{{ $errors->first('cap_rate') }}</div>
+                    @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Occupancy</label>
@@ -98,31 +127,31 @@ Real Estate
 
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">OM</label>
-                    <input type="file" class="pt-2" id="om_file" name="om_file">
+                    <input type="file" class="pt-2" id="om_file" name="om_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">Rent Roll</label>
-                    <input type="file" class="pt-2" id="image" name="rent_roll_file">
+                    <input type="file" class="pt-2" id="image" name="rent_roll_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">P and L</label>
-                    <input type="file" class="pt-2" id="image" name="p_l_file">
+                    <input type="file" class="pt-2" id="image" name="p_l_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">T12</label>
-                    <input type="file" class="pt-2" id="image" name="t12_file">
+                    <input type="file" class="pt-2" id="image" name="t12_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">T3</label>
-                    <input type="file" class="pt-2" id="image" name="t3_file">
+                    <input type="file" class="pt-2" id="image" name="t3_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">Collections report due to Covid</label>
-                    <input type="file" class="pt-2" id="image" name="covid_file">
+                    <input type="file" class="pt-2" id="image" name="covid_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
                     <label class="mb-1 formlabel">CapX Report</label>
-                    <input type="file" class="pt-2" id="image" name="capx_file">
+                    <input type="file" class="pt-2" id="image" name="capx_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <!-- <div class="col-md-4">
                     <label class="mb-2 formlabel">OM</label>

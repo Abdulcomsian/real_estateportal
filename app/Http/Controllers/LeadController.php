@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Lead;
 use App\Models\Clients;
 use Illuminate\Http\Request;
+use DB;
 
 use Auth;
 
@@ -36,6 +37,15 @@ class LeadController extends Controller
     //store data
     public function store(Request $request)
     {
+        $request->validate([
+            'address' => ['required'],
+            'markete_location' => ['required'],
+            'ask_price' => ['required', 'integer'],
+            'price_per_door' => ['required', 'integer'],
+            'gross_revenue' => ['required', 'integer'],
+            'noi' => ['required'],
+            'cap_rate' => ['required', 'integer'],
+        ]);
         try {
             $input = $request->except('_token', 'image');
             $input['user_id'] = Auth::user()->id;
@@ -83,8 +93,12 @@ class LeadController extends Controller
     public function show($id)
     {
         try {
-            $lead = Lead::find($id);
-            return view('leads.leads-detail', compact('lead'));
+            $lead = DB::table('leads')
+                ->select('leads.*', 'leads.id as leadid', 'clients.*')
+                ->join('clients', 'clients.id', '=', 'leads.client_id')
+                ->where('leads.id', $id)
+                ->paginate(20);
+            return view('appointments.index', compact('lead'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -105,6 +119,15 @@ class LeadController extends Controller
     //update lead data
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'address' => ['required'],
+            'markete_location' => ['required'],
+            'ask_price' => ['required', 'integer'],
+            'price_per_door' => ['required', 'integer'],
+            'gross_revenue' => ['required', 'integer'],
+            'noi' => ['required'],
+            'cap_rate' => ['required', 'integer'],
+        ]);
         try {
             $leaddata = Lead::find($id);
             $input = $request->except('_token', '_method');

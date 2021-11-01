@@ -35,6 +35,18 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:35'],
+            'phone_number' => ['required', 'string', 'max:14'],
+            'target_location' => ['required', 'string'],
+            'price_range' => ['required', 'integer'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
+            'unit_size' => ['required', 'integer'],
+            'cap_rate' => ['required', 'integer'],
+            'price_per_door' => ['required', 'integer'],
+            'deal_type' => ['required', 'integer'],
+            'image' => ['required'],
+        ]);
         try {
             $input = $request->except('_token', 'image');
             $input['user_id'] = Auth::user()->id;
@@ -81,6 +93,18 @@ class CustomerController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:35'],
+            'phone_number' => ['required', 'string', 'max:14'],
+            'target_location' => ['required', 'string'],
+            'price_range' => ['required', 'integer'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
+            'unit_size' => ['required', 'integer'],
+            'cap_rate' => ['required', 'integer'],
+            'price_per_door' => ['required', 'integer'],
+            'deal_type' => ['required', 'integer'],
+            'image' => ['required'],
+        ]);
         try {
             $input = $request->except('_token', 'image', '_method');
             $input['user_id'] = Auth::user()->id;
