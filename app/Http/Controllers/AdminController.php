@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\User;
+use App\Models\Clients;
+use App\Models\Lead;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,12 +22,14 @@ class AdminController extends Controller
 
     public function index()
     {
-        $totalcustomers = User::where('role', 'admin')->count();
-        return view('home.dashboard', compact('totalcustomers'));
+        $totalcustomers = Clients::count();
+        $totalleads=Lead::count();
+        return view('home.dashboard', compact('totalcustomers','totalleads'));
     }
     public function dashboard()
     {
-        $totalcustomers = User::where('role', 'admin')->count();
-        return view('home.dashboard', compact('totalcustomers'));
+        $totalcustomers = Clients::count();
+        $totalleads=Lead::count();
+        return view('home.dashboard', compact('totalcustomers','totalleads'));
     }
 }

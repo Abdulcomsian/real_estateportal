@@ -35,7 +35,7 @@ Zine Collective | International Marketing
                   <div class="icon2 text-center"><img src="images/deadline.png"></div>
                   <div class="flex-grow-1 valtop">
                     <div class="heading2">Total Leads</div>
-                    <div class="cont-val">0</div>
+                    <div class="cont-val">{{ $totalleads}}</div>
                   </div>
                 </div>
               </div>

@@ -115,31 +115,31 @@ Real Estate
                                         <label class="mb-2 formlabel">Other documents:</label>
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">OM</label>
+                                        <label class="mb-1 formlabel">OM&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->om_file}}" target="_blank">@if($client->om_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="om_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">Rent Roll</label>
+                                        <label class="mb-1 formlabel">Rent Roll&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->rent_roll_file}}" target="_blank">@if($client->rent_roll_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="rent_roll_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">P and L</label>
+                                        <label class="mb-1 formlabel">P and L&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->p_l_file}}" target="_blank">@if($client->p_l_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="p_l_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">T12</label>
+                                        <label class="mb-1 formlabel">T12&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->t12_file}}" target="_blank">@if($client->t12_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="t12_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">T3</label>
+                                        <label class="mb-1 formlabel">T3&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->t3_file}}" target="_blank">@if($client->t3_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="t3_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">Collections report due to Covid</label>
+                                        <label class="mb-1 formlabel">Collections report due to Covid&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->covid_file}}" target="_blank">@if($client->covid_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="covid_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">CapX Report</label>
+                                        <label class="mb-1 formlabel">CapX Report&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->capx_file}}" target="_blank">@if($client->capx_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="capx_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <!-- <div class="col-md-4">

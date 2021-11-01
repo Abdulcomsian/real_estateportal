@@ -64,8 +64,12 @@ Real Estate
                                         <input type="text" class="form-control" id="deal_type" name="deal_type" placeholder="Deal type" value="{{$client->deal_type}}" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="mb-2 formlabel">Image</label>
-                                        <input type="file" class="pt-2" id="image" name="image" accept="image/*">
+                                        <label class="mb-2 formlabel">Image&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->file}}" target="_blank">View image</a></label>
+                                        <input type="file" class="pt-2" id="image" name="image" accept="image/*" required="required">
+                                         @if($errors->has('image'))
+                                        <div class="error">{{ $errors->first('image') }}</div>
+                                        @endif
+
                                     </div>
 
                                 </div>

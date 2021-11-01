@@ -37,7 +37,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:35'],
-            'phone_number' => ['required', 'string', 'max:16'],
+            'phone_number' => ['required', 'string', 'max:20'],
             'target_location' => ['required', 'string'],
             'price_range' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
@@ -95,14 +95,14 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:35'],
-            'phone_number' => ['required', 'string', 'max:16'],
+            'phone_number' => ['required', 'string', 'max:20'],
             'target_location' => ['required', 'string'],
             'price_range' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
             'unit_size' => ['required', 'integer'],
             'cap_rate' => ['required', 'integer'],
             'price_per_door' => ['required', 'string'],
-            'deal_type' => ['required', 'integer'],
+            'deal_type' => ['required'],
             'image' => ['required'],
         ]);
         try {
@@ -125,10 +125,8 @@ class CustomerController extends Controller
             }
 
             $res = Clients::where('id', $id)->update($input);
-            if ($res) {
                 toastr()->success('Client Updated Successfully!!');
                 return redirect('/customer');
-            }
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
