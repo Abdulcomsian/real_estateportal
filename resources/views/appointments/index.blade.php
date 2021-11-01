@@ -34,7 +34,8 @@ Zine Collective | International Marketing
                                 <div class="courses-item pt-3">
                                     <div class="courses-grid">
                                         <div class="img-part">
-                                            <a onclick="openmodal('{{json_encode($le)}}')" href="#"><img src="{{asset('client-images').'/'.$le->file ?? ''}}" alt="img" class="img-fluid"></a>
+                                            <a onclick="openmodal('{{json_encode($le)}}')" href="#"><img src="
+                                                @if($le->file){{asset('client-images').'/'.$le->file}}@else{{'https://www.pinclipart.com/picdir/middle/541-5416602_dummy-profile-image-url-clipart.png'}}@endif" alt="img" class="img-fluid"></a>
                                         </div>
                                         <div class="content-part" style="height: 314px">
                                             <div class="info-meta">
