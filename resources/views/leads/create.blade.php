@@ -118,7 +118,8 @@ Zellaray Capital
                     <label class="mb-2 formlabel">Status</label>
                     <select class="form-control" id="status" name="status">
                       <option value="0">Pending</option>
-                      <option value="1">Approved</option>
+                      <option value="1">Active</option>
+                      <option value="3">Under Contract</option>
                     </select>
                   </div>
                   <div class=" col-md-12">

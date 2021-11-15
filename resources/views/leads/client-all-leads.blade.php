@@ -41,8 +41,8 @@ Zellaray Capital
                                     <tr>
                                         <td>{{$lead->address}}</td>
                                         <td>{{$lead->markete_location}}</td>
-                                        <td>{{$lead->price_per_door}}</td>
-                                        <td>{{$lead->gross_revenue}}</td>
+                                        <td>{{number_format($lead->price_per_door, 2, ".", ",")}}</td>
+                                        <td>{{number_format($lead->gross_revenue, 2, ".", ",")}}</td>
                                         <td>
                                             <a data-toggle="tooltip" href="{{route('leads.edit',$lead->id)}}" title="Edit">
                                                 <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">

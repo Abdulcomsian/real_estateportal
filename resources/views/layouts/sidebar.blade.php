@@ -41,13 +41,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/leads')}}">
                             <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Leads</span>
+                            <span>Deals</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('leads.active')}}">
+                            <i><img src="{{asset('images/file.png')}}"></i>
+                            <span>Active Deals</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('leads.pending')}}">
+                            <i><img src="{{asset('images/file.png')}}"></i>
+                            <span>Pending Deals</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('leads.under.contract')}}">
+                            <i><img src="{{asset('images/file.png')}}"></i>
+                            <span>Zellaray Deals</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/lead/mapview')}}">
                             <i><img src="{{asset('images/appointment.png')}}"></i>
-                            <span>Leads Search</span>
+                            <span>Deals Search</span>
                         </a>
                     </li>
                     <li class="nav-item">

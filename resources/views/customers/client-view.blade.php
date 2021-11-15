@@ -48,7 +48,7 @@ Zellaray Capital
                     <td>{{$client->email}}</td>
                     <td>{{$client->phone_number}}</td>
                     <td>{{$client->target_location}}</td>
-                    <td>{{$client->price_range}}</td>
+                    <td>{{number_format($client->price_range, 2, ".", ",")}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('customer.edit',$client->id)}}" title="Edit">
                         <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">
@@ -56,7 +56,7 @@ Zellaray Capital
                       <a data-toggle="tooltip" href="{{route('customer.show',$client->id)}}" title="View">
                         <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
                       </a>
-                      <a data-toggle="tooltip" href="{{route('client.all.leads',$client->id)}}" title="Client All Leads">
+                      <a data-toggle="tooltip" href="{{route('client.all.leads',$client->id)}}" title="Client All Deals">
                         <span class="fa fa-list"></span>
                       </a>
                       <form id="form_{{$client->id}}" action="{{route('customer.destroy',$client)}}" method="POST">

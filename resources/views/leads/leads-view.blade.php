@@ -13,7 +13,7 @@ Zellaray Capital
             <div class="card-header border-bottom">
               <div class="row">
                 <div class="col-md-6 ">
-                  <h2>Leads Data</h2>
+                  <h2>{{$title}}</h2>
                 </div>
                 <div class="col-md-6">
                   <a href="{{route('leads.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Leads</a>
@@ -41,8 +41,8 @@ Zellaray Capital
                   <tr>
                     <td>{{$lead->address}}</td>
                     <td>{{$lead->markete_location}}</td>
-                    <td>{{$lead->price_per_door}}</td>
-                    <td>{{$lead->gross_revenue}}</td>
+                    <td>${{number_format($lead->price_per_door, 2, ".", ",")}}</td>
+                    <td>${{number_format($lead->gross_revenue, 2, ".", ",")}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('leads.edit',$lead->id)}}" title="Edit">
                         <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">

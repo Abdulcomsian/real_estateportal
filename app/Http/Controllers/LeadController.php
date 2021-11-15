@@ -14,7 +14,7 @@ class LeadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
 
@@ -22,7 +22,8 @@ class LeadController extends Controller
     {
         try {
             $leads = Lead::get();
-            return view('leads.leads-view', ['leads' => $leads]);
+            $title="All Deals";
+            return view('leads.leads-view', ['leads' => $leads,'title'=> $title]);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -213,4 +214,44 @@ class LeadController extends Controller
             return back();
         }
     }
+    //active leads
+    public function active_leads()
+    {
+        try {
+            $leads = Lead::where('status',1)->get();
+            $title="Active Deals";
+             return view('leads.leads-view', ['leads' => $leads,'title'=> $title]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //pending leads
+    public function pending_leads()
+    {
+        try {
+            $leads = Lead::where('status',0)->get();
+            $title="Pending Deals";
+             return view('leads.leads-view', ['leads' => $leads,'title'=> $title]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+
+    }
+    //undercontract leads
+    public function under_contract()
+    {
+        try {
+            $leads = Lead::where('status',3)->get();
+            $title="Under Contract Deals";
+            return view('leads.leads-view', ['leads' => $leads,'title'=> $title]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+
+    }
+
+
 }
