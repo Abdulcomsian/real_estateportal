@@ -11,7 +11,7 @@ Zellaray Capital
             <div class="clinic-s">
                 <div class="row py-4 container-fluid ">
                     <div class="col-md-12">
-                        <div class="page-heading">Leads</div>
+                        <div class="page-heading">Deals</div>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@ Zellaray Capital
 
                     <div class="card card-small clinic-card">
                         <div class="card-header border-bottom">
-                            Edit Leads
+                            Edit Deals
                         </div>
                         <div class="card-body">
                             <form method="post" action="{{route('leads.update',$lead->id)}}" enctype="multipart/form-data">
@@ -147,7 +147,7 @@ Zellaray Capital
                                         <input type="file" class="pt-2" id="image" name="image" required>
                                     </div> -->
                                 </div>
-                                <button type="submit" class=" mt-5 btn btn-primary btn-add float-right">Update Lead</button>
+                                <button type="submit" class=" mt-5 btn btn-primary btn-add float-right">Update Deals</button>
                             </form>
                         </div>
                     </div>

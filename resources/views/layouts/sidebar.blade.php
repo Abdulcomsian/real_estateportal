@@ -50,13 +50,13 @@
                             <span>Active Deals</span>
                         </a>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{route('leads.pending')}}">
                             <i><img src="{{asset('images/file.png')}}"></i>
                             <span>Pending Deals</span>
                         </a>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{route('leads.under.contract')}}">
                             <i><img src="{{asset('images/file.png')}}"></i>
                             <span>Zellaray Deals</span>

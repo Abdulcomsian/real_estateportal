@@ -16,7 +16,7 @@ Zellaray Capital
                   <h2>{{$title}}</h2>
                 </div>
                 <div class="col-md-6">
-                  <a href="{{route('leads.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Leads</a>
+                  <a href="{{route('leads.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Deals</a>
                 </div>
               </div>
             </div>
