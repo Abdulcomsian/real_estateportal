@@ -34,20 +34,71 @@ Zellaray Capital
                 <div class="d-flex align-content-center align-middle bd-highlight">
                   <div class="icon2 text-center"><img src="images/deadline.png"></div>
                   <div class="flex-grow-1 valtop">
-                    <div class="heading2">Total Leads</div>
+                    <a href="{{url('/leads')}}">
+                      <div class="heading2">Total Leads</div>
+                    </a>
                     <div class="cont-val">{{ $totalleads}}</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!--End here-->
+          <div class="col-md-6">
+            <div class="card welcome-card">
+              <div class="s">
+                <div class="d-flex align-content-center align-middle bd-highlight">
+                  <div class="icon2 text-center"><img src="images/deadline.png"></div>
+                  <div class="flex-grow-1 valtop">
+                    <a href="{{route('leads.pending')}}">
+                      <div class="heading2">Pending Leads</div>
+                    </a>
+                    <div class="cont-val">{{$pendingleads}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card welcome-card">
+              <div class="s">
+                <div class="d-flex align-content-center align-middle bd-highlight">
+                  <div class="icon2 text-center"><img src="images/deadline.png"></div>
+                  <div class="flex-grow-1 valtop">
+                    <a href="{{route('leads.active')}}">
+                      <div class="heading2">Active Leads</div>
+                    </a>
+                    <div class="cont-val">{{ $activeleads}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card welcome-card">
+              <div class="s">
+                <div class="d-flex align-content-center align-middle bd-highlight">
+                  <div class="icon2 text-center"><img src="images/deadline.png"></div>
+                  <div class="flex-grow-1 valtop">
+                    <a href="{{route('leads.under.contract')}}">
+                      <div class="heading2">Zellaray Under Contract</div>
+                    </a>
+                    <div class="cont-val">{{ $zalaryleads}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
 
+          </div>
         </div>
+        <!--End here-->
 
       </div>
-    </main>
+
   </div>
+  </main>
+</div>
 </div>
 
 @endsection

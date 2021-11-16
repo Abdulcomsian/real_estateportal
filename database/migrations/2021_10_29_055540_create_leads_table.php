@@ -37,6 +37,8 @@ class CreateLeadsTable extends Migration
             $table->string('capx_file')->nullable();
             $table->string('location_lat')->nullable();
             $table->string('location_long')->nullable();
+            $table->bigInteger('broker_id')->unsigned()->nullable();
+            $table->foreign('broker_id')->references('id')->on('brokers');
             $table->bigInteger('client_id')->unsigned()->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->bigInteger('user_id')->unsigned();

@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Lead;
 use App\Models\Clients;
+use App\Models\Brokers;
 use Illuminate\Http\Request;
 use DB;
+use App\Exports\LeadExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 use Auth;
 
@@ -14,7 +18,7 @@ class LeadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
 
@@ -22,7 +26,9 @@ class LeadController extends Controller
     {
         try {
             $leads = Lead::get();
-            return view('leads.leads-view', ['leads' => $leads]);
+            $brokers = Brokers::get();
+            $title = "All Deals";
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title, 'brokers' => $brokers]);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -31,8 +37,13 @@ class LeadController extends Controller
     //crate form
     public function create()
     {
-        $clients = Clients::get();
-        return view('leads.create', compact('clients'));
+        try {
+            $brokers = Brokers::get();
+            return view('leads.create', compact('brokers'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
     //store data
     public function store(Request $request)
@@ -107,9 +118,9 @@ class LeadController extends Controller
     public function edit($id)
     {
         try {
-            $clients = Clients::get();
+            $brokers = Brokers::get();
             $lead = Lead::find($id);
-            return view('leads.edit-leads', compact('lead', 'clients'));
+            return view('leads.edit-leads', compact('lead', 'brokers'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -208,6 +219,62 @@ class LeadController extends Controller
         try {
             $leads = Lead::where('client_id', $id)->get();
             return view('leads.client-all-leads', ['leads' => $leads]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //active leads
+    public function active_leads()
+    {
+        try {
+            $leads = Lead::where('status', 1)->get();
+            $title = "Active Deals";
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //pending leads
+    public function pending_leads()
+    {
+        try {
+            $leads = Lead::where('status', 0)->get();
+            $title = "Pending Deals";
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //undercontract leads
+    public function under_contract()
+    {
+        try {
+            $leads = Lead::where('status', 3)->get();
+            $title = "Under Contract Deals";
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //export to excel
+    public function export_excel()
+    {
+        return  Excel::download(new LeadExport, 'lead.xlsx');
+    }
+
+    public function lead_filter_broker(Request $request)
+    {
+
+        try {
+            $broker_id = $request->broker;
+            $leads = Lead::where('broker_id', $broker_id)->get();
+            $brokers = Brokers::get();
+            $title = "All Deals";
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title, 'brokers' => $brokers]);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

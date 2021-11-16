@@ -16,10 +16,10 @@ Zellaray Capital
             <div class="card-header border-bottom">
               <div class="row">
                 <div class="col-md-6 ">
-                  <h2>Clients Data</h2>
+                  <h2>Brokers Data</h2>
                 </div>
                 <div class="col-md-6">
-                  <a href="{{route('customer.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Clients</a>
+                  <a href="{{route('brokers.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Brokers</a>
                 </div>
               </div>
             </div>
@@ -29,37 +29,32 @@ Zellaray Capital
                   <tr>
                     <th class="th-sm">Name
                     </th>
-                    <th class="th-sm">Target Location
+                    <th class="th-sm">Email
                     </th>
-                    <th class="th-sm">Price Range
+                    <th class="th-sm">Phone Number
                     </th>
-                    <th class="th-sm">Deal Type
                     </th>
                     <th class="th-sm">Action
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($clients as $client)
+                  @foreach($brokers as $broker)
                   <tr>
-                    <td>{{$client->name}}</td>
-                    <td>{{$client->target_location}}</td>
-                    <td>{{number_format($client->price_range, 2, ".", ",")}}</td>
-                    <td>{{$client->deal_type}}</td>
+                    <td>{{$broker->name}}</td>
+                    <td>{{$broker->email}}</td>
+                    <td>{{$broker->phone_number}}</td>
                     <td>
-                      <a data-toggle="tooltip" href="{{route('customer.edit',$client->id)}}" title="Edit">
+                      <a data-toggle="tooltip" href="{{route('brokers.edit',$broker->id)}}" title="Edit">
                         <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">
                       </a>
-                      <a data-toggle="tooltip" href="{{route('customer.show',$client->id)}}" title="View">
+                      <a data-toggle="tooltip" href="{{route('brokers.show',$broker->id)}}" title="View">
                         <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
                       </a>
-                      <a data-toggle="tooltip" href="{{route('client.all.leads',$client->id)}}" title="Client All Deals">
-                        <span class="fa fa-list"></span>
-                      </a>
-                      <form id="form_{{$client->id}}" action="{{route('customer.destroy',$client)}}" method="POST">
+                      <form id="form_{{$broker->id}}" action="{{route('brokers.destroy',$broker)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="void:javascript" onclick="return false" id="{{$client->id}}" class="deleteclient"><span class="fa fa-trash"></span></a>
+                        <a href="void:javascript" onclick="return false" id="{{$broker->id}}" class="deletebroker"><span class="fa fa-trash"></span></a>
                       </form>
                     </td>
                   </tr>
@@ -77,7 +72,7 @@ Zellaray Capital
 @endsection
 @section('script')
 <script>
-  $(document).on('click', '.deleteclient', function() {
+  $(document).on('click', '.deletebroker', function() {
     var id = $(this).attr('id');
     swal.fire({
       title: 'Are you sure?',

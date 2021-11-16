@@ -165,18 +165,22 @@ Zellaray Capital
       'background-repeat': 'no-repeat',
       'background-size': 'cover'
     });
-    $("#modalprice").text('$' + lead.price_range);
+    $("#modalprice").text(formatToCurrency(lead.price_range));
     $("#modalname").text(lead.name);
     $("#modalphone").text(lead.phone_number);
     $("#modalemail").text(lead.email);
     $("#modallocation").text(lead.target_location);
-    $("#modalpricerange").text('$' + lead.price_range);
+    $("#modalpricerange").text(formatToCurrency(lead.price_range));
     $("#modalunitsize").text(lead.unit_size);
-    $("#modalcaprate").text(lead.cap_rate);
-    $("#modalpriceperdoor").text(lead.price_per_door);
+    $("#modalcaprate").text(formatToCurrency(lead.cap_rate));
+    $("#modalpriceperdoor").text(formatToCurrency(lead.price_per_door));
     $("#modaldealtype").text(lead.deal_type);
     $("#exampleModalCenter").modal();
   }
+
+  function formatToCurrency(amount) {
+    return "$" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeHpSgm-hy0_G_NC6PynKEYgASntQIi1Y&libraries=places&callback=initMap" async defer></script>
 <script>
@@ -187,9 +191,19 @@ Zellaray Capital
   function initMap() {
     var directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
-    var chicago = new google.maps.LatLng({{$lead[0] - > location_lat}}, {{$lead[0] - > location_long}});
+    var chicago = new google.maps.LatLng({{$lead[0]-> location_lat}}, {{$lead[0]-> location_long}});
     const uluru = {
-      lat: {{$lead[0] - > location_lat}},lng: {{$lead[0] - > location_long}}};
+      lat: {
+        {
+          $lead[0] - > location_lat
+        }
+      },
+      lng: {
+        {
+          $lead[0] - > location_long
+        }
+      }
+    };
     var mapOptions = {
       zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP,

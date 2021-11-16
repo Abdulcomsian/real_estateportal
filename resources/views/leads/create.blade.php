@@ -19,7 +19,7 @@ Zellaray Capital
       <div class="clinic-s">
         <div class="row py-4 container-fluid ">
           <div class="col-md-12">
-            <div class="page-heading">Leads</div>
+            <div class="page-heading">Deals</div>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@ Zellaray Capital
 
           <div class="card card-small clinic-card">
             <div class="card-header border-bottom">
-              Leads
+              Deals
             </div>
             <div class="card-body">
               <form method="post" action="{{route('leads.store')}}" enctype="multipart/form-data">
@@ -44,11 +44,11 @@ Zellaray Capital
                     @endif
                   </div>
                   <div class="form-group col-md-4">
-                    <label class="mb-2 formlabel">Assign Lead</label>
-                    <select class="form-control" name="client_id" id="client_id">
-                      <option value="">Select Client</option>
-                      @foreach($clients as $client)
-                      <option value="{{$client->id}}">{{$client->name}}</option>
+                    <label class="mb-2 formlabel">Assign Deal</label>
+                    <select class="form-control" name="broker_id" id="broker_id">
+                      <option value="">Select Broker</option>
+                      @foreach($brokers as $broker)
+                      <option value="{{$broker->id}}">{{$broker->name}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -118,7 +118,11 @@ Zellaray Capital
                     <label class="mb-2 formlabel">Status</label>
                     <select class="form-control" id="status" name="status">
                       <option value="0">Pending</option>
-                      <option value="1">Approved</option>
+                      <option value="1">Active</option>
+                      <option value="2">Under Contract</option>
+                      <option value="3">Zellaray Under Contract</option>
+                      <option value="4">Sold</option>
+                      <option value="5">Undeliverable</option>
                     </select>
                   </div>
                   <div class=" col-md-12">

@@ -23,13 +23,22 @@ class AdminController extends Controller
     public function index()
     {
         $totalcustomers = Clients::count();
-        $totalleads=Lead::count();
-        return view('home.dashboard', compact('totalcustomers','totalleads'));
+        $totalleads = Lead::count();
+        $pendingleads = Lead::where('status', 0)->count();
+        $activeleads = Lead::where('status', 1)->count();
+        $zalaryleads = Lead::where('status', 3)->count();
+
+        return view('home.dashboard', compact('totalcustomers', 'totalleads', 'pendingleads', 'activeleads', 'zalaryleads'));
     }
     public function dashboard()
     {
+
         $totalcustomers = Clients::count();
-        $totalleads=Lead::count();
-        return view('home.dashboard', compact('totalcustomers','totalleads'));
+        $totalleads = Lead::count();
+        $pendingleads = Lead::where('status', 0)->count();
+        $activeleads = Lead::where('status', 1)->count();
+        $zalaryleads = Lead::where('status', 3)->count();
+
+        return view('home.dashboard', compact('totalcustomers', 'totalleads', 'pendingleads', 'activeleads', 'zalaryleads'));
     }
 }
