@@ -38,10 +38,10 @@ Zellaray Capital
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Assign Lead</label>
-                                        <select class="form-control" name="client_id" id="client_id">
+                                        <select class="form-control" name="broker_id" id="broker_id">
                                             <option value="">Select Client</option>
-                                            @foreach($clients as $client)
-                                            <option value="{{$client->id}}" @if($lead->client_id==$client->id){{'selected'}}@endif>{{$client->name}}</option>
+                                            @foreach($brokers as $broker)
+                                            <option value="{{$broker->id}}" @if($lead->broker_id==$broker->id){{'selected'}}@endif>{{$broker->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -109,37 +109,44 @@ Zellaray Capital
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Status</label>
-                                        <input type="text" class="form-control" id="status" name="status" placeholder="Status" required value="{{$lead->status ?? ''}}">
+                                        <select class="form-control" id="status" name="status">
+                                            <option value="0" @if($lead->status==0){{'selected'}}@endif</option>Pending</option>
+                                            <option value="1" @if($lead->status==1){{'selected'}}@endif>Active</option>
+                                            <option value="2" @if($lead->status==2){{'selected'}}@endif>Under Contract</option>
+                                            <option value="3" @if($lead->status==3){{'selected'}}@endif>Zellaray Under Contract</option>
+                                            <option value="4" @if($lead->status==4){{'selected'}}@endif>Sold</option>
+                                            <option value="5" @if($lead->status==5){{'selected'}}@endif>Undeliverable</option>
+                                        </select>
                                     </div>
                                     <div class=" col-md-12">
                                         <label class="mb-2 formlabel">Other documents:</label>
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">OM&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->om_file}}" target="_blank">@if($client->om_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">OM&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->om_file}}" target="_blank">@if($lead->om_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="om_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">Rent Roll&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->rent_roll_file}}" target="_blank">@if($client->rent_roll_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">Rent Roll&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->rent_roll_file}}" target="_blank">@if($lead->rent_roll_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="rent_roll_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">P and L&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->p_l_file}}" target="_blank">@if($client->p_l_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">P and L&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->p_l_file}}" target="_blank">@if($lead->p_l_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="p_l_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">T12&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->t12_file}}" target="_blank">@if($client->t12_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">T12&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->t12_file}}" target="_blank">@if($lead->t12_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="t12_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">T3&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->t3_file}}" target="_blank">@if($client->t3_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">T3&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->t3_file}}" target="_blank">@if($lead->t3_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="t3_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">Collections report due to Covid&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->covid_file}}" target="_blank">@if($client->covid_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">Collections report due to Covid&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->covid_file}}" target="_blank">@if($lead->covid_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="covid_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <div class="col-md-4 mt-4">
-                                        <label class="mb-1 formlabel">CapX Report&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$client->capx_file}}" target="_blank">@if($client->capx_file){{'View Document'}}@endif</a></label>
+                                        <label class="mb-1 formlabel">CapX Report&nbsp;&nbsp;&nbsp;<a href="{{asset('client-images').'/'.$lead->capx_file}}" target="_blank">@if($lead->capx_file){{'View Document'}}@endif</a></label>
                                         <input type="file" class="pt-2" name="capx_file" accept=".pdf,.doc,.docx,application/msword">
                                     </div>
                                     <!-- <div class="col-md-4">

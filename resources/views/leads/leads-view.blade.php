@@ -9,14 +9,37 @@ Zellaray Capital
     <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
       <div class="page-header row py-1 justify-content-center">
         <div class="col-md-9" style=" margin: 70px">
+          <div class="row">
+            <div class="col-md-6">
+              <a href="{{route('leads.exportexcel')}}" target="_blank" class="btn btn-info btn-add float-left">Export Lead</a>
+            </div>
+            <div class="col-md-6">
+              <form class="form-inline" method="post" action="{{url('leads-filter-broker')}}">
+                @csrf
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="inputPassword2" class="sr-only">Broker</label>
+                  <select class="form-control" name="broker">
+                    <option value="">Filter by Broker</option>
+                    @foreach($brokers as $broker)
+                    <option value="{{$broker->id}}">{{$broker->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Filter</button>
+              </form>
+            </div>
+          </div>
+          <br>
           <div class="card card-small clinic-card d-flex">
             <div class="card-header border-bottom">
               <div class="row">
+
                 <div class="col-md-6 ">
                   <h2>{{$title}}</h2>
                 </div>
                 <div class="col-md-6">
                   <a href="{{route('leads.create')}}" class="btn btn-primary btn-add float-right"><img class="plus" src="{{asset ('images/png/add.png')}}" alt="">Add Deals</a>
+
                 </div>
               </div>
             </div>
@@ -32,6 +55,7 @@ Zellaray Capital
                     </th>
                     <th class="th-sm">Gross Revenue
                     </th>
+                    <th class="th-sm">Status</th>
                     <th class="th-sm">Action
                     </th>
                   </tr>
@@ -43,6 +67,7 @@ Zellaray Capital
                     <td>{{$lead->markete_location}}</td>
                     <td>${{number_format($lead->price_per_door, 2, ".", ",")}}</td>
                     <td>${{number_format($lead->gross_revenue, 2, ".", ",")}}</td>
+                    <td style="color:{{lead_status($lead->status)['color']}}">{{lead_status($lead->status)['name']}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('leads.edit',$lead->id)}}" title="Edit">
                         <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">

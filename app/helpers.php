@@ -38,3 +38,18 @@ function removefile($leaddata, $inputname)
         }
     }
 }
+
+function lead_status($status)
+{
+    if ($status == "0") {
+        return ['color' => 'yellowgreen', 'name' => 'Pending Offer'];
+    } elseif ($status == "1") {
+        return ['color' => 'blue', 'name' => 'Active'];
+    } elseif ($status == "3") {
+        return ['color' => 'green', 'name' => 'Zellaray Under Contract'];
+    } elseif ($status == "4") {
+        return ['color' => 'red', 'name' => 'Sold'];
+    } elseif ($status == "5") {
+        return ['color' => 'red', 'name' => 'Undeliverable'];
+    }
+}

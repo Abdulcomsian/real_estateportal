@@ -1,3 +1,10 @@
+@section('css')
+<style>
+    .bgcolor {
+        background-color: #2f3b4ccf;
+    }
+</style>
+@endsction
 <div class="container-fluid">
     <div class="row">
         <!-- Main Sidebar -->
@@ -39,28 +46,33 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/leads')}}">
-                            <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Deals</span>
+                        <a class="nav-link" href="{{route('brokers.index')}}">
+                            <i><img src="{{asset('images/png/user.png')}}"></i>
+                            <span>Brokers</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('leads.active')}}">
-                            <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Active Deals</span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-collapse " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i><img src="{{asset('images/file.png')}}"></i>Deals <span class="fa fa-caret-down" style="float: right;"></span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('leads.pending')}}">
-                            <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Pending Deals</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('leads.under.contract')}}">
-                            <i><img src="{{asset('images/file.png')}}"></i>
-                            <span>Zellaray Deals</span>
-                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link bgcolor" href="{{url('/leads')}}">
+                                <i><img src="{{asset('images/file.png')}}"></i>
+                                <span>All Deals</span>
+                            </a>
+                            <a class="nav-link bgcolor" href="{{route('leads.active')}}">
+                                <i><img src="{{asset('images/file.png')}}"></i>
+                                <span>Active Deals</span>
+                            </a>
+                            <a class="nav-link bgcolor" href="{{route('leads.pending')}}">
+                                <i><img src="{{asset('images/file.png')}}"></i>
+                                <span>Pending Deals</span>
+                            </a>
+                            <a class="nav-link bgcolor" href="{{route('leads.under.contract')}}">
+                                <i><img src="{{asset('images/file.png')}}"></i>
+                                <span>Zellaray Deals</span>
+                            </a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/lead/mapview')}}">

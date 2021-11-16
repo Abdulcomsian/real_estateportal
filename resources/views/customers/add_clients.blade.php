@@ -42,20 +42,27 @@ Zellaray Capital
                     @endif
                   </div>
                   <div class="form-group col-md-4">
+                    <label class="mb-2 formlabel">Company Name</label>
+                    <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name" required>
+                    @if($errors->has('company_name'))
+                    <div class="error">{{ $errors->first('company_name') }}</div>
+                    @endif
+                  </div>
+                  <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Phone Number</label>
                     <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" required>
                     @if($errors->has('phone_number'))
                     <div class="error">{{ $errors->first('phone_number') }}</div>
                     @endif
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label class="mb-2 formlabel">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                     @if($errors->has('email'))
                     <div class="error">{{ $errors->first('email') }}</div>
                     @endif
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <label class="mb-2 formlabel">Target Location</label>
                     <input type="text" class="form-control" id="target_location" name="target_location" placeholder="Target location" required>
                     @if($errors->has('target_location'))
@@ -85,14 +92,24 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Price per door</label>
-                    <input type="number" class="form-control" id="price_per_door" name="price_per_door" placeholder="Price per door" required>
+                    <input type="number" class="form-control" id="price_per_door" name="price_per_door" placeholder="Price per door" S>
                     @if($errors->has('price_per_door'))
                     <div class="error">{{ $errors->first('price_per_door') }}</div>
                     @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Deal type</label>
-                    <input type="text" class="form-control" id="deal_type" name="deal_type" placeholder="Deal type" required>
+                    <select class="form-control" id="deal_type" name="deal_type" required>
+                      <option value="">Select Deal Type</option>
+                      <option value="core">Core</option>
+                      <option value="stabiized">Stabilized</option>
+                      <option value="value-add">Value-Add</option>
+                      <option value="heavy-left">Heavy Lift</option>
+                      <option value="development">Development</option>
+                      <option value="mixed-use">Mixed Use</option>
+                      <option value="retail">Retail</option>
+                      <option value="land">Land</option>
+                    </select>
                     @if($errors->has('deal_type'))
                     <div class="error">{{ $errors->first('deal_type') }}</div>
                     @endif

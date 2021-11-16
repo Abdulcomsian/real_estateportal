@@ -42,7 +42,6 @@ class CustomerController extends Controller
             'price_range' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
             'unit_size' => ['required', 'integer'],
-            'cap_rate' => ['required', 'integer'],
             'price_per_door' => ['required', 'integer'],
             'deal_type' => ['required'],
             'image' => ['required'],
@@ -125,8 +124,8 @@ class CustomerController extends Controller
             }
 
             $res = Clients::where('id', $id)->update($input);
-                toastr()->success('Client Updated Successfully!!');
-                return redirect('/customer');
+            toastr()->success('Client Updated Successfully!!');
+            return redirect('/customer');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -139,8 +138,7 @@ class CustomerController extends Controller
             toastr()->success('Client Deleted Successfully');
             return redirect('/customer');
         } catch (\Exception $exception) {
-            if($exception->getCode()==23000)
-            {
+            if ($exception->getCode() == 23000) {
                 toastr()->error('Client cant be deleted. client is associated to a lead ');
                 return back();
             }
