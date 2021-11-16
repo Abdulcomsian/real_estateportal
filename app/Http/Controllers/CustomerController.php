@@ -46,29 +46,29 @@ class CustomerController extends Controller
             'deal_type' => ['required'],
             'image' => ['required'],
         ]);
-        try {
-            $input = $request->except('_token', 'image');
-            $input['user_id'] = Auth::user()->id;
-            if ($file = $request->file('image')) {
+        // try {
+        $input = $request->except('_token', 'image');
+        $input['user_id'] = Auth::user()->id;
+        if ($file = $request->file('image')) {
+            $path = 'client-images/';
+            if (!file_exists(public_path() . '/' . $path)) {
                 $path = 'client-images/';
-                if (!file_exists(public_path() . '/' . $path)) {
-                    $path = 'client-images/';
-                    File::makeDirectory(public_path() . '/' . $path, 0777, true);
-                }
-                $name = time() . $file->getClientOriginalName();
-                $file->move('client-images/', $name);
-                $input['file'] = $name;
+                File::makeDirectory(public_path() . '/' . $path, 0777, true);
             }
-
-            $res = Clients::create($input);
-            if ($res) {
-                toastr()->success('Client Created Successfully!!');
-                return redirect('/customer');
-            }
-        } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
+            $name = time() . $file->getClientOriginalName();
+            $file->move('client-images/', $name);
+            $input['file'] = $name;
         }
+
+        $res = Clients::create($input);
+        if ($res) {
+            toastr()->success('Client Created Successfully!!');
+            return redirect('/customer');
+        }
+        // } catch (\Exception $exception) {
+        //     toastr()->error('Something went wrong, try again');
+        //     return back();
+        // }
     }
     public function show($id)
     {

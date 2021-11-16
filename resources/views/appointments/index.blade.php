@@ -210,7 +210,7 @@ function formatToCurrency(amount) {
     function initMap() {
         var directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer();
-        var chicago = new google.maps.LatLng({{$lead[0]->location_lat}}, {{$lead[0]->location_long}});
+        var chicago = new google.maps.LatLng({{$lead[0]->location_lat ?? '38.685516'}}, {{$lead[0]->location_long ?? '-101.073324'}});
         var mapOptions = {
             zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
