@@ -45,6 +45,8 @@ function lead_status($status)
         return ['color' => 'yellowgreen', 'name' => 'Pending Offer'];
     } elseif ($status == "1") {
         return ['color' => 'blue', 'name' => 'Active'];
+    } elseif ($status == "2") {
+        return ['color' => 'orange', 'name' => 'Under Contract'];
     } elseif ($status == "3") {
         return ['color' => 'green', 'name' => 'Zellaray Under Contract'];
     } elseif ($status == "4") {
