@@ -47,13 +47,14 @@ Zellaray Capital
               <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
                 <thead>
                   <tr>
+                    <th>Deal Name</th>
                     <th class="th-sm">Address
                     </th>
                     <th class="th-sm">Market Location
                     </th>
-                    <th class="th-sm">Price pre Door
+                    <th class="th-sm">Price
                     </th>
-                    <th class="th-sm">Gross Revenue
+                    <th class="th-sm">Cap Rate
                     </th>
                     <th class="th-sm">Status</th>
                     <th class="th-sm">Action
@@ -63,10 +64,11 @@ Zellaray Capital
                 <tbody>
                   @foreach($leads as $lead)
                   <tr>
+                    <td>{{$lead->deal_name}}</td>
                     <td>{{$lead->address}}</td>
                     <td>{{$lead->markete_location}}</td>
-                    <td>${{number_format($lead->price_per_door, 2, ".", ",")}}</td>
-                    <td>${{number_format($lead->gross_revenue, 2, ".", ",")}}</td>
+                    <td>${{number_format($lead->ask_price, 2, ".", ",")}}</td>
+                    <td>${{number_format($lead->cap_rate, 2, ".", ",")}}</td>
                     <td style="color:{{lead_status($lead->status)['color']}}">{{lead_status($lead->status)['name']}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('leads.edit',$lead->id)}}" title="Edit">

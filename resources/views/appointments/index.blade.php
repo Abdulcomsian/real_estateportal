@@ -104,10 +104,10 @@ $locations=array();
                                                                             <th scope="row"> Ask Price</th>
                                                                             <td id="modalaskprice">034004030303</td>
                                                                         </tr>
-                                                                        <tr>
+                                                                        <!-- <tr>
                                                                             <th scope="row">gross_revenue</th>
                                                                             <td id="modalgross_revenue">>abc@gmail.com</td>
-                                                                        </tr>
+                                                                        </tr> -->
                                                                         <tr>
                                                                             <th scope="row">NOI</th>
                                                                             <td id="modalnoi">Pindi</td>
@@ -165,7 +165,7 @@ $locations=array();
 <script>
     function openmodal(lead) {
         lead = JSON.parse(lead);
-
+        console.log(lead);
         if (lead.file) {
             publicurl = $("#publicurl").val();
             $("#bgimage").css({
@@ -182,11 +182,11 @@ $locations=array();
             });
         }
         $("#mmarkete_location").text(lead.markete_location);
-        $("#modalprice").text('$' + lead.ask_price);
+        $("#modalaskprice").text(formatToCurrency(lead.ask_price));
         $("#modaladdress").text(lead.address);
-        $("#modalgross_revenue").text(formatToCurrency(lead.gross_revenue));
+        // $("#modalgross_revenue").text(formatToCurrency(lead.gross_revenue));
         $("#modalnoi").text(lead.noi);
-        $("#modaloccupancy").text(formatToCurrency(lead.occupancy));
+        $("#modaloccupancy").text(lead.occupancy);
         $("#modalasset_class").text(lead.asset_class);
         $("#modalcaprate").text(formatToCurrency(lead.leadcap_rate));
         $("#modalpriceperdoor").text(formatToCurrency(lead.leadpricedoor));
@@ -194,9 +194,9 @@ $locations=array();
         $("#exampleModalCenter").modal();
     }
 
-function formatToCurrency(amount) {
-    return "$" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
-  };
+    function formatToCurrency(amount) {
+        return "$" + parseInt(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+    };
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGZsEuXCZJyg8-h8jmSFpLUiXd9BIJsew&libraries=places&callback=initMap" async defer></script>
 <script>
@@ -210,7 +210,7 @@ function formatToCurrency(amount) {
     function initMap() {
         var directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer();
-        var chicago = new google.maps.LatLng({{$lead[0]->location_lat ?? '38.685516'}}, {{$lead[0]->location_long ?? '-101.073324'}});
+        var chicago = new google.maps.LatLng({{$lead[0]-> location_lat ?? '38.685516'}},{{$lead[0]-> location_long ?? '-101.073324'}});
         var mapOptions = {
             zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -265,15 +265,15 @@ function formatToCurrency(amount) {
                     });
                 }
                 $("#mmarkete_location").text(lead[0].markete_location);
-                $("#modalprice").text('$' + lead[0].ask_price);
+                $("#modalprice").text(formatToCurrency(lead[0].ask_price));
                 $("#modaladdress").text(lead[0].address);
-                $("#modalaskprice").text('$' + lead[0].ask_price);
-                $("#modalgross_revenue").text('$' + lead[0].gross_revenue);
+                $("#modalaskprice").text(formatToCurrency(lead[0].ask_price));
+                // $("#modalgross_revenue").text(formatToCurrency(lead[0].gross_revenue));
                 $("#modalnoi").text(lead[0].noi);
-                $("#modaloccupancy").text('$' + lead[0].occupancy);
+                $("#modaloccupancy").text(lead[0].occupancy);
                 $("#modalasset_class").text(lead[0].asset_class);
-                $("#modalcaprate").text('$' + lead[0].leadcap_rate);
-                $("#modalpriceperdoor").text('$' + lead[0].leadpricedoor);
+                $("#modalcaprate").text(formatToCurrency(lead[0].leadcap_rate));
+                $("#modalpriceperdoor").text(formatToCurrency(lead[0].leadpricedoor));
                 $("#modalassignto").text(lead[0].name);
                 $("#exampleModalCenter").modal();
             }

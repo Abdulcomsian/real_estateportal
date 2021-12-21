@@ -53,9 +53,9 @@ class LeadController extends Controller
             'markete_location' => ['required'],
             'ask_price' => ['required', 'integer'],
             'price_per_door' => ['required', 'integer'],
-            'gross_revenue' => ['required', 'integer'],
+            // 'gross_revenue' => ['required', 'integer'],
             'noi' => ['required'],
-            'cap_rate' => ['required', 'integer'],
+            'cap_rate' => 'required|numeric|between:0,99.99',
         ]);
         try {
             $input = $request->except('_token', 'image');
@@ -88,6 +88,10 @@ class LeadController extends Controller
             if ($file = $request->file('capx_file')) {
                 $name = $this->upload_file($file);
                 $input['capx_file'] = $name;
+            }
+            if ($file = $request->file('coster_report')) {
+                $name = $this->upload_file($file);
+                $input['coster_report'] = $name;
             }
             //end of document
             $res = Lead::create($input);
@@ -229,8 +233,9 @@ class LeadController extends Controller
     {
         try {
             $leads = Lead::where('status', 1)->get();
+            $brokers = Brokers::get();
             $title = "Active Deals";
-            return view('leads.leads-view', ['leads' => $leads, 'title' => $title]);
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title, 'brokers' => $brokers]);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -241,8 +246,9 @@ class LeadController extends Controller
     {
         try {
             $leads = Lead::where('status', 0)->get();
+            $brokers = Brokers::get();
             $title = "Pending Deals";
-            return view('leads.leads-view', ['leads' => $leads, 'title' => $title]);
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title, 'brokers' => $brokers]);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -253,8 +259,9 @@ class LeadController extends Controller
     {
         try {
             $leads = Lead::where('status', 3)->get();
+            $brokers = Brokers::get();
             $title = "Under Contract Deals";
-            return view('leads.leads-view', ['leads' => $leads, 'title' => $title]);
+            return view('leads.leads-view', ['leads' => $leads, 'title' => $title, 'brokers' => $brokers]);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
