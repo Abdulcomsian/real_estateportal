@@ -46,7 +46,7 @@ Zellaray Capital
                     <td>{{$client->phone_number}}</td>
                     <td>{{$client->target_location}}</td>
                     <td>{{number_format($client->price_range, 2, ".", ",")}}</td>
-                    <td>{{$client->unit_size}}</td>
+                    <td>{{$client->unit_size}}+</td>
                     <td>{{number_format($client->cap_rate, 2, ".", ",")}}</td>
                     <td>{{number_format($client->price_per_door, 2, ".", ",")}}</td>
                     <td>{{$client->deal_type}}</td>

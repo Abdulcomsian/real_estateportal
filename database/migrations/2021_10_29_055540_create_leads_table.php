@@ -15,6 +15,7 @@ class CreateLeadsTable extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
+            $table->string('deal_name')->nullable();
             $table->string('address')->nullable();
             $table->string('markete_location')->nullable();
             $table->bigInteger('ask_price')->nullable();
@@ -27,6 +28,8 @@ class CreateLeadsTable extends Migration
             $table->string('pro_forma')->nullable();
             $table->string('renovations')->nullable();
             $table->string('broker_contact')->nullable();
+            $table->string('Off_market')->nullable();
+            $table->string('on_market')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->string('om_file')->nullable();
             $table->string('rent_roll_file')->nullable();
@@ -35,6 +38,7 @@ class CreateLeadsTable extends Migration
             $table->string('t3_file')->nullable();
             $table->string('covid_file')->nullable();
             $table->string('capx_file')->nullable();
+            $table->string('coster_report')->nullable();
             $table->string('location_lat')->nullable();
             $table->string('location_long')->nullable();
             $table->bigInteger('broker_id')->unsigned()->nullable();

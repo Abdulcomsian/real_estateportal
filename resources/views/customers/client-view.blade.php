@@ -44,7 +44,7 @@ Zellaray Capital
                   <tr>
                     <td>{{$client->name}}</td>
                     <td>{{$client->target_location}}</td>
-                    <td>{{number_format($client->price_range, 2, ".", ",")}}</td>
+                    <td>{{$client->price_range}}</td>
                     <td>{{$client->deal_type}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('customer.edit',$client->id)}}" title="Edit">

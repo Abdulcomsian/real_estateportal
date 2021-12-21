@@ -34,6 +34,13 @@ Zellaray Capital
               <form method="post" action="{{route('leads.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <label class="mb-2 formlabel">Name</label>
+                    <input type="text" class="form-control" name="deal_name" placeholder="Enter Deal Name" required>
+                    @if($errors->has('deal_name'))
+                    <div class="error">{{ $errors->first('deal_name') }}</div>
+                    @endif
+                  </div>
                   <div class="form-group col-md-8">
                     <label class="mb-2 formlabel">Address</label>
                     <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Address" required>
@@ -73,34 +80,34 @@ Zellaray Capital
                     <div class="error">{{ $errors->first('price_per_door') }}</div>
                     @endif
                   </div>
-                  <div class="form-group col-md-4">
+                  <!-- <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Gross Revenue</label>
                     <input type="number" class="form-control" id="gross_revenue" name="gross_revenue" placeholder="Gross Revenue" required>
                     @if($errors->has('gross_revenue'))
                     <div class="error">{{ $errors->first('gross_revenue') }}</div>
                     @endif
-                  </div>
+                  </div> -->
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">NOI</label>
-                    <input type="text" class="form-control" id="noi" name="noi" placeholder="NOI" required>
+                    <input type="text" class="form-control" id="noi" name="noi" placeholder="NOI">
                     @if($errors->has('noi'))
                     <div class="error">{{ $errors->first('noi') }}</div>
                     @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Cap Rate</label>
-                    <input type="number" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate" required>
+                    <input type="number" class="form-control" id="cap_rate" name="cap_rate" step=".01" placeholder="Cap Rate">
                     @if($errors->has('cap_rate'))
                     <div class="error">{{ $errors->first('cap_rate') }}</div>
                     @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Occupancy</label>
-                    <input type="text" class="form-control" id="occupancy" name="occupancy" placeholder="Occupancy" required>
+                    <input type="text" class="form-control" id="occupancy" name="occupancy" placeholder="Occupancy">
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Asset Class</label>
-                    <input type="text" class="form-control" id="asset_class" name="asset_class" placeholder="Asset Class" required>
+                    <input type="text" class="form-control" id="asset_class" name="asset_class" placeholder="Asset Class">
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Pro Forma If Applicable</label>
@@ -108,11 +115,19 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Renovations</label>
-                    <input type="text" class="form-control" id="renovations" name="renovations" placeholder="Renovations" required>
+                    <input type="text" class="form-control" id="renovations" name="renovations" placeholder="Renovations">
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Broker and Contact</label>
-                    <input type="text" class="form-control" id="broker_contact" name="broker_contact" placeholder="Broker and Contact" required>
+                    <input type="text" class="form-control" id="broker_contact" name="broker_contact" placeholder="Broker and Contact" >
+                  </div>
+                   <div class="form-group col-md-4">
+                    <label class="mb-2 formlabel">Off Market</label>
+                    <input type="text" class="form-control" id="Off_market" name="Off_market" placeholder="Off Market" >
+                  </div>
+                   <div class="form-group col-md-4">
+                    <label class="mb-2 formlabel">On Market</label>
+                    <input type="text" class="form-control" id="on_market" name="on_market" placeholder="On Market" >
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Status</label>
@@ -157,6 +172,11 @@ Zellaray Capital
                     <label class="mb-1 formlabel">CapX Report</label>
                     <input type="file" class="pt-2" id="image" name="capx_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
+                  <div class="col-md-4 mt-4">
+                    <label class="mb-1 formlabel">costar  Report</label>
+                    <input type="file" class="pt-2" id="image" name="coster_report" accept=".pdf,.doc,.docx,application/msword">
+                  </div>
+                  
                   <!-- <div class="col-md-4">
                     <label class="mb-2 formlabel">OM</label>
                     <input type="file" class="pt-2" id="image" name="image" required>

@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->string('target_location')->nullable();
-            $table->bigInteger('price_range')->nullable();
+            $table->string('price_range')->nullable();
             $table->integer('unit_size')->nullable();
             $table->integer('cap_rate')->nullable();
             $table->bigInteger('price_per_door')->nullable();

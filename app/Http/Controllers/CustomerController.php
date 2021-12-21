@@ -39,36 +39,36 @@ class CustomerController extends Controller
             'name' => ['required', 'string', 'max:35'],
             'phone_number' => ['required', 'string', 'max:20'],
             'target_location' => ['required', 'string'],
-            'price_range' => ['required', 'integer'],
+            'price_range' => ['required'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
             'unit_size' => ['required', 'integer'],
-            'price_per_door' => ['required', 'integer'],
+            // 'price_per_door' => ['required', 'integer'],
             'deal_type' => ['required'],
-            'image' => ['required'],
+            // 'image' => ['required'],
         ]);
-        // try {
-        $input = $request->except('_token', 'image');
-        $input['user_id'] = Auth::user()->id;
-        if ($file = $request->file('image')) {
-            $path = 'client-images/';
-            if (!file_exists(public_path() . '/' . $path)) {
+        try {
+            $input = $request->except('_token', 'image');
+            $input['user_id'] = Auth::user()->id;
+            if ($file = $request->file('image')) {
                 $path = 'client-images/';
-                File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                if (!file_exists(public_path() . '/' . $path)) {
+                    $path = 'client-images/';
+                    File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                }
+                $name = time() . $file->getClientOriginalName();
+                $file->move('client-images/', $name);
+                $input['file'] = $name;
             }
-            $name = time() . $file->getClientOriginalName();
-            $file->move('client-images/', $name);
-            $input['file'] = $name;
-        }
 
-        $res = Clients::create($input);
-        if ($res) {
-            toastr()->success('Client Created Successfully!!');
-            return redirect('/customer');
+            $res = Clients::create($input);
+            if ($res) {
+                toastr()->success('Client Created Successfully!!');
+                return redirect('/customer');
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
         }
-        // } catch (\Exception $exception) {
-        //     toastr()->error('Something went wrong, try again');
-        //     return back();
-        // }
     }
     public function show($id)
     {
