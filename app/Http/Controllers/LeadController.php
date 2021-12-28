@@ -58,55 +58,55 @@ class LeadController extends Controller
             // 'noi' => ['required'],
             // 'cap_rate' => 'required',
         ]);
-        // try {
-        $input = $request->except('_token', 'image');
-        $input['user_id'] = Auth::user()->id;
-        //documents will uploaded here
-        if ($file = $request->file('om_file')) {
-            $name = $this->upload_file($file);
-            $input['om_file'] = $name;
+        try {
+            $input = $request->except('_token', 'image');
+            $input['user_id'] = Auth::user()->id;
+            //documents will uploaded here
+            if ($file = $request->file('om_file')) {
+                $name = $this->upload_file($file);
+                $input['om_file'] = $name;
+            }
+            if ($file = $request->file('rent_roll_file')) {
+                $name = $this->upload_file($file);
+                $input['rent_roll_file'] = $name;
+            }
+            if ($file = $request->file('p_l_file')) {
+                $name = $this->upload_file($file);
+                $input['p_l_file'] = $name;
+            }
+            if ($file = $request->file('t12_file')) {
+                $name = $this->upload_file($file);
+                $input['t12_file'] = $name;
+            }
+            if ($file = $request->file('t3_file')) {
+                $name = $this->upload_file($file);
+                $input['t3_file'] = $name;
+            }
+            if ($file = $request->file('covid_file')) {
+                $name = $this->upload_file($file);
+                $input['covid_file'] = $name;
+            }
+            if ($file = $request->file('capx_file')) {
+                $name = $this->upload_file($file);
+                $input['capx_file'] = $name;
+            }
+            if ($file = $request->file('coster_report')) {
+                $name = $this->upload_file($file);
+                $input['coster_report'] = $name;
+            }
+            //end of document
+            $input['ask_price'] =  Str::replace(',', '', $request->ask_price);
+            $input['price_per_door'] =  Str::replace(',', '', $request->price_per_door);
+            $input['cap_rate'] =  Str::replace(',', '', $request->cap_rate);
+            $res = Lead::create($input);
+            if ($res) {
+                toastr()->success('Lead Created Successfully!!');
+                return redirect('/leads');
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
         }
-        if ($file = $request->file('rent_roll_file')) {
-            $name = $this->upload_file($file);
-            $input['rent_roll_file'] = $name;
-        }
-        if ($file = $request->file('p_l_file')) {
-            $name = $this->upload_file($file);
-            $input['p_l_file'] = $name;
-        }
-        if ($file = $request->file('t12_file')) {
-            $name = $this->upload_file($file);
-            $input['t12_file'] = $name;
-        }
-        if ($file = $request->file('t3_file')) {
-            $name = $this->upload_file($file);
-            $input['t3_file'] = $name;
-        }
-        if ($file = $request->file('covid_file')) {
-            $name = $this->upload_file($file);
-            $input['covid_file'] = $name;
-        }
-        if ($file = $request->file('capx_file')) {
-            $name = $this->upload_file($file);
-            $input['capx_file'] = $name;
-        }
-        if ($file = $request->file('coster_report')) {
-            $name = $this->upload_file($file);
-            $input['coster_report'] = $name;
-        }
-        //end of document
-        $input['ask_price'] =  Str::replace(',', '', $request->ask_price);
-        $input['price_per_door'] =  Str::replace(',', '', $request->price_per_door);
-        $input['cap_rate'] =  Str::replace(',', '', $request->cap_rate);
-        $res = Lead::create($input);
-        if ($res) {
-            toastr()->success('Lead Created Successfully!!');
-            return redirect('/leads');
-        }
-        // } catch (\Exception $exception) {
-        //     toastr()->error('Something went wrong, try again');
-        //     return back();
-        // }
     }
     //show data
     public function show($id)
