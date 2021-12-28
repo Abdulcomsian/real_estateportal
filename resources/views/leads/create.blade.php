@@ -96,7 +96,7 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Cap Rate</label>
-                    <input type="text" class="form-control" id="cap_rate" name="cap_rate" step=".01" placeholder="Cap Rate">
+                    <input type="text" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate">
                     @if($errors->has('cap_rate'))
                     <div class="error">{{ $errors->first('cap_rate') }}</div>
                     @endif

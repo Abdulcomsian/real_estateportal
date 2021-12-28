@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Exports\LeadExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 
 use Auth;
@@ -55,7 +56,7 @@ class LeadController extends Controller
             'price_per_door' => ['required'],
             // 'gross_revenue' => ['required', 'integer'],
             'noi' => ['required'],
-            'cap_rate' => 'required|numeric|between:0,99.99',
+            'cap_rate' => 'required',
         ]);
         try {
             $input = $request->except('_token', 'image');
@@ -94,6 +95,9 @@ class LeadController extends Controller
                 $input['coster_report'] = $name;
             }
             //end of document
+            $input['ask_price'] =  Str::replace(',', '', $request->ask_price);
+            $input['price_per_door'] =  Str::replace(',', '', $request->price_per_door);
+            $input['cap_rate'] =  Str::replace(',', '', $request->cap_rate);
             $res = Lead::create($input);
             if ($res) {
                 toastr()->success('Lead Created Successfully!!');

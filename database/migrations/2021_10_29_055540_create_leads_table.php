@@ -18,11 +18,11 @@ class CreateLeadsTable extends Migration
             $table->string('deal_name')->nullable();
             $table->string('address')->nullable();
             $table->string('markete_location')->nullable();
-            $table->bigInteger('ask_price')->nullable();
-            $table->bigInteger('price_per_door')->nullable();
+            $table->float('ask_price')->nullable();
+            $table->float('price_per_door')->nullable();
             $table->bigInteger('gross_revenue')->nullable();
             $table->string('noi')->nullable();
-            $table->integer('cap_rate')->nullable();
+            $table->float('cap_rate')->nullable();
             $table->string('occupancy')->nullable();
             $table->string('asset_class')->nullable();
             $table->string('pro_forma')->nullable();
