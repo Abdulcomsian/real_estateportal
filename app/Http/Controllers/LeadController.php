@@ -55,8 +55,8 @@ class LeadController extends Controller
             'ask_price' => ['required'],
             'price_per_door' => ['required'],
             // 'gross_revenue' => ['required', 'integer'],
-            'noi' => ['required'],
-            'cap_rate' => 'required',
+            // 'noi' => ['required'],
+            // 'cap_rate' => 'required',
         ]);
         try {
             $input = $request->except('_token', 'image');
@@ -140,11 +140,11 @@ class LeadController extends Controller
         $request->validate([
             'address' => ['required'],
             'markete_location' => ['required'],
-            'ask_price' => ['required', 'integer'],
-            'price_per_door' => ['required', 'integer'],
-            'gross_revenue' => ['required', 'integer'],
-            'noi' => ['required'],
-            'cap_rate' => ['required', 'integer'],
+            'ask_price' => ['required'],
+            'price_per_door' => ['required']
+            // 'gross_revenue' => ['required', 'integer'],
+            // 'noi' => ['required'],
+            // 'cap_rate' => ['required', 'integer'],
         ]);
         try {
             $leaddata = Lead::find($id);
