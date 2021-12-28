@@ -4,11 +4,11 @@ Zellaray Capital
 @endsection
 @section('content')
 <!-- Table section -->
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
       <div class="page-header row py-1 justify-content-center">
-        <div class="col-md-9" style=" margin: 70px">
+        <div class="col-md-9" style="margin: 70px">
           <div class="row">
             <div class="col-md-3">
               <a href="{{route('leads.exportexcel')}}" target="_blank" class="btn btn-info btn-add float-left">Export Lead</a>
