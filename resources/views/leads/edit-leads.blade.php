@@ -39,7 +39,7 @@ Zellaray Capital
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Assign Lead</label>
                                         <select class="form-control" name="broker_id" id="broker_id">
-                                            <option value="">Select Client</option>
+                                            <option value="">Select Broker</option>
                                             @foreach($brokers as $broker)
                                             <option value="{{$broker->id}}" @if($lead->broker_id==$broker->id){{'selected'}}@endif>{{$broker->name}}</option>
                                             @endforeach
@@ -66,46 +66,54 @@ Zellaray Capital
                                         <div class="error">{{ $errors->first('price_per_door') }}</div>
                                         @endif
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <!-- <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Gross Revenue</label>
                                         <input type="number" class="form-control" id="gross_revenue" name="gross_revenue" placeholder="Gross Revenue" required value="{{$lead->gross_revenue ?? ''}}">
                                         @if($errors->has('gross_revenue'))
                                         <div class="error">{{ $errors->first('gross_revenue') }}</div>
                                         @endif
-                                    </div>
+                                    </div> -->
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">NOI</label>
-                                        <input type="text" class="form-control" id="noi" name="noi" placeholder="NOI" required value="{{$lead->noi ?? ''}}">
+                                        <input type="text" class="form-control" id="noi" name="noi" placeholder="NOI" value="{{$lead->noi ?? ''}}">
                                         @if($errors->has('noi'))
                                         <div class="error">{{ $errors->first('noi') }}</div>
                                         @endif
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Cap Rate</label>
-                                        <input type="number" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate" required value="{{$lead->cap_rate ?? ''}}">
+                                        <input type="number" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate" value="{{$lead->cap_rate ?? ''}}">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Occupancy</label>
-                                        <input type="text" class="form-control" id="occupancy" name="occupancy" placeholder="Occupancy" required value="{{$lead->occupancy ?? ''}}">
+                                        <input type="text" class="form-control" id="occupancy" name="occupancy" placeholder="Occupancy" value="{{$lead->occupancy ?? ''}}">
                                         @if($errors->has('cap_rate'))
                                         <div class="error">{{ $errors->first('cap_rate') }}</div>
                                         @endif
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Asset Class</label>
-                                        <input type="text" class="form-control" id="asset_class" name="asset_class" placeholder="Asset Class" required value="{{$lead->asset_class ?? ''}}">
+                                        <input type="text" class="form-control" id="asset_class" name="asset_class" placeholder="Asset Class" value="{{$lead->asset_class ?? ''}}">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Pro Forma If Applicable</label>
-                                        <input type="text" class="form-control" id="pro_forma" name="pro_forma" placeholder="Pro Forma If Applicable" required value="{{$lead->pro_forma ?? ''}}">
+                                        <input type="text" class="form-control" id="pro_forma" name="pro_forma" placeholder="Pro Forma If Applicable" value="{{$lead->pro_forma ?? ''}}">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Renovations</label>
-                                        <input type="text" class="form-control" id="renovations" name="renovations" placeholder="Renovations" required value="{{$lead->renovations ?? ''}}">
+                                        <input type="text" class="form-control" id="renovations" name="renovations" placeholder="Renovations" value="{{$lead->renovations ?? ''}}">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Broker and Contact</label>
-                                        <input type="text" class="form-control" id="broker_contact" name="broker_contact" placeholder="Broker and Contact" required value="{{$lead->broker_contact ?? ''}}">
+                                        <input type="text" class="form-control" id="broker_contact" name="broker_contact" placeholder="Broker and Contact" value="{{$lead->broker_contact ?? ''}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="mb-2 formlabel">Off Market</label>
+                                        <input type="text" class="form-control" id="Off_market" name="Off_market" value="{{$lead->Off_market ?? ''}}" placeholder="Off Market">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="mb-2 formlabel">On Market</label>
+                                        <input type="text" class="form-control" id="on_market" name="on_market" value="{{$lead->on_market ?? ''}}" placeholder="On Market">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Status</label>
@@ -240,5 +248,17 @@ Zellaray Capital
 
         });
     }
+</script>
+<script>
+    $("#ask_price,#price_per_door,#cap_rate").on("keypress keyup blur", function(event) {
+        $(this).val($(this).val().replace(/[^0-9\.|\,]/g, ''));
+        if (event.which == 44) {
+            return true;
+        }
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+
+            event.preventDefault();
+        }
+    });
 </script>
 @endsection
