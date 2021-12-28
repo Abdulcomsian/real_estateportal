@@ -28,6 +28,7 @@ Route::get('leads-pending', 'LeadController@pending_leads')->name('leads.pending
 Route::get('leads-under-contract', 'LeadController@under_contract')->name('leads.under.contract');
 Route::post('leads-filter-broker', 'LeadController@lead_filter_broker')->name('leads.filter.broker');
 Route::get('leads/client/all/leads/{id}', 'LeadController@client_all_leads')->name('client.all.leads');
+Route::get('leads/broker/all/leads/{id}', 'LeadController@broker_all_leads')->name('broker.all.leads');
 Route::get('leads-excel', 'LeadController@export_excel')->name('leads.exportexcel');
 Route::get('/lead/mapview', 'AppointmentController@index');
 Route::get('/get-lead-details', 'AppointmentController@get_lead_details');

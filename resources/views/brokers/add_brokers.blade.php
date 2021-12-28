@@ -34,25 +34,32 @@ Zellaray Capital
               <form method="post" action="{{route('brokers.store')}}">
                 @csrf
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <label class="mb-2 formlabel">Name</label>
                     <input type="text" class="form-control" id="broker_name" name="name" placeholder="Name" required>
                     @if($errors->has('name'))
                     <div class="error">{{ $errors->first('name') }}</div>
                     @endif
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <label class="mb-2 formlabel">Phone Number</label>
                     <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" required>
                     @if($errors->has('phone_number'))
                     <div class="error">{{ $errors->first('phone_number') }}</div>
                     @endif
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <label class="mb-2 formlabel">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                     @if($errors->has('email'))
                     <div class="error">{{ $errors->first('email') }}</div>
+                    @endif
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label class="mb-2 formlabel">Market Location</label>
+                    <input type="text" class="form-control map-input" id="markete" name="markete_location" placeholder="Market Location" required>
+                    @if($errors->has('markete'))
+                    <div class="error">{{ $errors->first('markete_location') }}</div>
                     @endif
                   </div>
                 </div>

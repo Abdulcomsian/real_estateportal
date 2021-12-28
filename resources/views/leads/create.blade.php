@@ -34,7 +34,7 @@ Zellaray Capital
               <form method="post" action="{{route('leads.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row">
-                    <div class="form-group col-md-12">
+                  <div class="form-group col-md-12">
                     <label class="mb-2 formlabel">Name</label>
                     <input type="text" class="form-control" name="deal_name" placeholder="Enter Deal Name" required>
                     @if($errors->has('deal_name'))
@@ -68,14 +68,14 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Ask Price</label>
-                    <input type="number" class="form-control" id="ask_price" name="ask_price" placeholder="Ask Price" required>
+                    <input type="text" class="form-control" id="ask_price" name="ask_price" placeholder="Ask Price" required>
                     @if($errors->has('ask_price'))
                     <div class="error">{{ $errors->first('ask_price') }}</div>
                     @endif
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Price Per Door</label>
-                    <input type="number" class="form-control" id="price_per_door" name="price_per_door" placeholder="Price per door" required>
+                    <input type="text" class="form-control" id="price_per_door" name="price_per_door" placeholder="Price per door" required>
                     @if($errors->has('price_per_door'))
                     <div class="error">{{ $errors->first('price_per_door') }}</div>
                     @endif
@@ -96,7 +96,7 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Cap Rate</label>
-                    <input type="number" class="form-control" id="cap_rate" name="cap_rate" step=".01" placeholder="Cap Rate">
+                    <input type="text" class="form-control" id="cap_rate" name="cap_rate" placeholder="Cap Rate">
                     @if($errors->has('cap_rate'))
                     <div class="error">{{ $errors->first('cap_rate') }}</div>
                     @endif
@@ -111,7 +111,7 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Pro Forma If Applicable</label>
-                    <input type="text" class="form-control" id="pro_forma" name="pro_forma" placeholder="Pro Forma If Applicable" required>
+                    <input type="text" class="form-control" id="pro_forma" name="pro_forma" placeholder="Pro Forma If Applicable">
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Renovations</label>
@@ -119,15 +119,15 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Broker and Contact</label>
-                    <input type="text" class="form-control" id="broker_contact" name="broker_contact" placeholder="Broker and Contact" >
+                    <input type="text" class="form-control" id="broker_contact" name="broker_contact" placeholder="Broker and Contact">
                   </div>
-                   <div class="form-group col-md-4">
+                  <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Off Market</label>
-                    <input type="text" class="form-control" id="Off_market" name="Off_market" placeholder="Off Market" >
+                    <input type="text" class="form-control" id="Off_market" name="Off_market" placeholder="Off Market">
                   </div>
-                   <div class="form-group col-md-4">
+                  <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">On Market</label>
-                    <input type="text" class="form-control" id="on_market" name="on_market" placeholder="On Market" >
+                    <input type="text" class="form-control" id="on_market" name="on_market" placeholder="On Market">
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Status</label>
@@ -173,10 +173,10 @@ Zellaray Capital
                     <input type="file" class="pt-2" id="image" name="capx_file" accept=".pdf,.doc,.docx,application/msword">
                   </div>
                   <div class="col-md-4 mt-4">
-                    <label class="mb-1 formlabel">costar  Report</label>
+                    <label class="mb-1 formlabel">costar Report</label>
                     <input type="file" class="pt-2" id="image" name="coster_report" accept=".pdf,.doc,.docx,application/msword">
                   </div>
-                  
+
                   <!-- <div class="col-md-4">
                     <label class="mb-2 formlabel">OM</label>
                     <input type="file" class="pt-2" id="image" name="image" required>
@@ -268,5 +268,18 @@ Zellaray Capital
 
     });
   }
+</script>
+
+<script>
+  $("#ask_price,#price_per_door,#cap_rate").on("keypress keyup blur", function(event) {
+    $(this).val($(this).val().replace(/[^0-9\.|\,]/g, ''));
+    if (event.which == 44) {
+      return true;
+    }
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+
+      event.preventDefault();
+    }
+  });
 </script>
 @endsection
