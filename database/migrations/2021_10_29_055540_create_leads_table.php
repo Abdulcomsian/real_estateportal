@@ -22,7 +22,7 @@ class CreateLeadsTable extends Migration
             $table->float('price_per_door')->nullable();
             $table->bigInteger('gross_revenue')->nullable();
             $table->string('noi')->nullable();
-            $table->float('cap_rate')->default(0);
+            $table->string('cap_rate')->default('0');
             $table->string('occupancy')->nullable();
             $table->string('asset_class')->nullable();
             $table->string('pro_forma')->nullable();
