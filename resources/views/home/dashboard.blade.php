@@ -35,7 +35,7 @@ Zellaray Capital
                   <div class="icon2 text-center"><img src="images/deadline.png"></div>
                   <div class="flex-grow-1 valtop">
                     <a href="{{url('/leads')}}">
-                      <div class="heading2">Total Leads</div>
+                      <div class="heading2">Total Deals</div>
                     </a>
                     <div class="cont-val">{{ $totalleads}}</div>
                   </div>
@@ -50,7 +50,7 @@ Zellaray Capital
                   <div class="icon2 text-center"><img src="images/deadline.png"></div>
                   <div class="flex-grow-1 valtop">
                     <a href="{{route('leads.pending')}}">
-                      <div class="heading2">Pending Leads</div>
+                      <div class="heading2">Pending Deals</div>
                     </a>
                     <div class="cont-val">{{$pendingleads}}</div>
                   </div>
@@ -65,7 +65,7 @@ Zellaray Capital
                   <div class="icon2 text-center"><img src="images/deadline.png"></div>
                   <div class="flex-grow-1 valtop">
                     <a href="{{route('leads.active')}}">
-                      <div class="heading2">Active Leads</div>
+                      <div class="heading2">Active Deals</div>
                     </a>
                     <div class="cont-val">{{ $activeleads}}</div>
                   </div>

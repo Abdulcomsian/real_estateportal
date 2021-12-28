@@ -51,8 +51,8 @@ class LeadController extends Controller
         $request->validate([
             'address' => ['required'],
             'markete_location' => ['required'],
-            'ask_price' => ['required', 'integer'],
-            'price_per_door' => ['required', 'integer'],
+            'ask_price' => ['required'],
+            'price_per_door' => ['required'],
             // 'gross_revenue' => ['required', 'integer'],
             'noi' => ['required'],
             'cap_rate' => 'required|numeric|between:0,99.99',
@@ -228,6 +228,18 @@ class LeadController extends Controller
             return back();
         }
     }
+    //broker all leads
+    public function broker_all_leads($id)
+    {
+        try {
+            $leads = Lead::where('broker_id', $id)->get();
+            return view('leads.client-all-leads', ['leads' => $leads]);
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+
     //active leads
     public function active_leads()
     {
@@ -275,10 +287,24 @@ class LeadController extends Controller
 
     public function lead_filter_broker(Request $request)
     {
-
+        $status = $request->status;
+        if ($request->status == "0") {
+            $status = '0';
+            $request->status = "6";
+        }
         try {
-            $broker_id = $request->broker;
-            $leads = Lead::where('broker_id', $broker_id)->get();
+            //filter by defferent options
+            $leads = Lead::when($request->broker, function ($query) use ($request) {
+                return $query->where('broker_id', $request->broker);
+            })->when($request->ask_price, function ($query) use ($request) {
+                return $query->where('ask_price', $request->ask_price);
+            })->when($request->status, function ($query) use ($request, $status) {
+                return $query->where('status', $status);
+            })->when($request->markete_location, function ($query) use ($request) {
+                return $query->where('markete_location', 'LIKE', '%' . $request->markete_location . '%');
+            })->when($request->cap_rate, function ($query) use ($request) {
+                return $query->where('cap_rate', $request->cap_rate);
+            })->get();
             $brokers = Brokers::get();
             $title = "All Deals";
             return view('leads.leads-view', ['leads' => $leads, 'title' => $title, 'brokers' => $brokers]);

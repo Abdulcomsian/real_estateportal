@@ -114,6 +114,7 @@ class BrokerController extends Controller
             'name' => ['required', 'string', 'max:35'],
             'phone_number' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
+            'markete' => ['requried'],
         ]);
         try {
             $input = $request->except('_token', '_method');

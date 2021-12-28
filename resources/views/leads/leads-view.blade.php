@@ -4,19 +4,22 @@ Zellaray Capital
 @endsection
 @section('content')
 <!-- Table section -->
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
       <div class="page-header row py-1 justify-content-center">
         <div class="col-md-9" style=" margin: 70px">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <a href="{{route('leads.exportexcel')}}" target="_blank" class="btn btn-info btn-add float-left">Export Lead</a>
             </div>
-            <div class="col-md-6">
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
               <form class="form-inline" method="post" action="{{url('leads-filter-broker')}}">
                 @csrf
-                <div class="form-group mx-sm-3 mb-2">
+                <div class="form-group mx-sm-4 mb-2">
                   <label for="inputPassword2" class="sr-only">Broker</label>
                   <select class="form-control" name="broker">
                     <option value="">Filter by Broker</option>
@@ -24,6 +27,30 @@ Zellaray Capital
                     <option value="{{$broker->id}}">{{$broker->name}}</option>
                     @endforeach
                   </select>
+                </div>
+                <div class="form-group mx-sm-4 mb-2">
+                  <label for="inputPassword2" class="sr-only">Status</label>
+                  <select class="form-control" name="status">
+                    <option value="">Filter by Status</option>
+                    <option value="0">Pending</option>
+                    <option value="1">Active</option>
+                    <option value="2">Under Contract</option>
+                    <option value="3">Zellaray Under Contract</option>
+                    <option value="4">Sold</option>
+                    <option value="5">Undeliverable</option>
+                  </select>
+                </div>
+                <div class="form-group mx-sm-4 mb-2">
+                  <label for="inputPassword2" class="sr-only">Price</label>
+                  <input type="number" name="ask_price" placeholder="Filter by price" class="form-control" />
+                </div>
+                <div class="form-group mx-sm-4 mb-2">
+                  <label for="inputPassword2" class="sr-only">Market</label>
+                  <input type="text" name="markete_location" placeholder="Filter by Market" class="form-control" />
+                </div>
+                <div class="form-group mx-sm-4 mb-2">
+                  <label for="inputPassword2" class="sr-only">Cap Rate</label>
+                  <input type="number" name="cap_rate" placeholder="Filter by Cap rate" class="form-control" />
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Filter</button>
               </form>

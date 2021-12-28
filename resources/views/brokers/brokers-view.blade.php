@@ -33,7 +33,7 @@ Zellaray Capital
                     </th>
                     <th class="th-sm">Phone Number
                     </th>
-                    </th>
+                    <th>Markete</th>
                     <th class="th-sm">Action
                     </th>
                   </tr>
@@ -44,12 +44,16 @@ Zellaray Capital
                     <td>{{$broker->name}}</td>
                     <td>{{$broker->email}}</td>
                     <td>{{$broker->phone_number}}</td>
+                    <td>{{$broker->markete}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('brokers.edit',$broker->id)}}" title="Edit">
                         <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">
                       </a>
                       <a data-toggle="tooltip" href="{{route('brokers.show',$broker->id)}}" title="View">
                         <img class="pr-2" src="{{asset ('images/png/view.png')}}" alt="icon">
+                      </a>
+                      <a data-toggle="tooltip" href="{{route('broker.all.leads',$broker->id)}}" title="Broker All Deals">
+                        <span class="fa fa-list"></span>
                       </a>
                       <form id="form_{{$broker->id}}" action="{{route('brokers.destroy',$broker)}}" method="POST">
                         @csrf
