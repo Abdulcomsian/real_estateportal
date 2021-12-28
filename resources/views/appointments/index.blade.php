@@ -188,7 +188,7 @@ $locations=array();
         $("#modalnoi").text(lead.noi);
         $("#modaloccupancy").text(lead.occupancy);
         $("#modalasset_class").text(lead.asset_class);
-        $("#modalcaprate").text(formatToCurrency(lead.leadcap_rate));
+        $("#modalcaprate").text(formatToCurrency(parseInt(lead.leadcap_rate)));
         $("#modalpriceperdoor").text(formatToCurrency(lead.leadpricedoor));
         $("#modalassignto").text(lead.name);
         $("#exampleModalCenter").modal();
@@ -210,7 +210,9 @@ $locations=array();
     function initMap() {
         var directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer();
-        var chicago = new google.maps.LatLng({{$lead[0]-> location_lat ?? '38.685516'}},{{$lead[0]-> location_long ?? '-101.073324'}});
+        var chicago = new google.maps.LatLng({{
+                $lead[0]->location_lat ?? '38.685516'}},{{
+                $lead[0]->location_long ?? '-101.073324'}});
         var mapOptions = {
             zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -272,7 +274,7 @@ $locations=array();
                 $("#modalnoi").text(lead[0].noi);
                 $("#modaloccupancy").text(lead[0].occupancy);
                 $("#modalasset_class").text(lead[0].asset_class);
-                $("#modalcaprate").text(formatToCurrency(lead[0].leadcap_rate));
+                $("#modalcaprate").text(formatToCurrency(parseInt(lead[0].leadcap_rate)));
                 $("#modalpriceperdoor").text(formatToCurrency(lead[0].leadpricedoor));
                 $("#modalassignto").text(lead[0].name);
                 $("#exampleModalCenter").modal();
