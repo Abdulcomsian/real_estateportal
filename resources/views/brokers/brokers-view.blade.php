@@ -33,7 +33,7 @@ Zellaray Capital
                     </th>
                     <th class="th-sm">Phone Number
                     </th>
-                    <th>Markete</th>
+                    <th class="th-sm">Market</th>
                     <th class="th-sm">Action
                     </th>
                   </tr>

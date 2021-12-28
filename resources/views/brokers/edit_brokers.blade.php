@@ -29,15 +29,22 @@ Zellaray Capital
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Name</label>
-                                        <input type="text" class="form-control" id="broker_name" name="name" placeholder="Name" value="{{$broker->name}}" required>
+                                        <input type="text" class="form-control" id="broker_name" name="name" placeholder="Name" value="{{$broker->name ?? '' }}" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Phone Number</label>
-                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" value="{{$broker->phone_number}}" required>
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" value="{{$broker->phone_number ?? ''}}" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$broker->email}}" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$broker->email ?? '' }}" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label class="mb-2 formlabel">Market Location</label>
+                                        <input type="text" class="form-control map-input" id="markete" name="markete" placeholder="Market Location" value="{{$broker->markete ?? ''}}" required>
+                                        @if($errors->has('markete'))
+                                        <div class="error">{{ $errors->first('markete') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-add">Update Brokers</button>

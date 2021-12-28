@@ -57,9 +57,9 @@ Zellaray Capital
                   </div>
                   <div class="form-group col-md-3">
                     <label class="mb-2 formlabel">Market Location</label>
-                    <input type="text" class="form-control map-input" id="markete" name="markete_location" placeholder="Market Location" required>
+                    <input type="text" class="form-control map-input" id="markete" name="markete" placeholder="Market Location" required>
                     @if($errors->has('markete'))
-                    <div class="error">{{ $errors->first('markete_location') }}</div>
+                    <div class="error">{{ $errors->first('markete') }}</div>
                     @endif
                   </div>
                 </div>
