@@ -45,7 +45,11 @@ Zellaray Capital
                     <td>{{$client->name}}</td>
                     <td>{{$client->target_location}}</td>
                     <td>{{$client->price_range}}</td>
-                    <td>{{$client->deal_type}}</td>
+                    <td>
+                      @foreach($client->deal_type as $type)
+                      <strong>{{$type}}</strong><br>
+                      @endforeach
+                    </td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('customer.edit',$client->id)}}" title="Edit">
                         <img class="pr-2" src="{{asset ('images/png/edit.png')}}" alt="icon">

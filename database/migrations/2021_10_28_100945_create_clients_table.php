@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('email')->nullable();
             $table->string('target_location')->nullable();
             $table->string('price_range')->nullable();
-            $table->integer('unit_size')->nullable();
+            $table->string('unit_size')->nullable();
             $table->integer('cap_rate')->nullable();
             $table->bigInteger('price_per_door')->nullable();
             $table->string('deal_type')->nullable();

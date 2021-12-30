@@ -42,7 +42,7 @@ function removefile($leaddata, $inputname)
 function lead_status($status)
 {
     if ($status == "0") {
-        return ['color' => 'yellowgreen', 'name' => 'Pending Offer'];
+        return ['color' => 'yellowgreen', 'name' => 'Offer Pending'];
     } elseif ($status == "1") {
         return ['color' => 'blue', 'name' => 'Active'];
     } elseif ($status == "2") {

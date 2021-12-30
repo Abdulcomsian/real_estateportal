@@ -30,8 +30,8 @@ Zellaray Capital
                                     <div class="form-group col-md-8">
                                         <label class="mb-2 formlabel">Address</label>
                                         <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Address" required value="{{$lead->address ?? ''}}">
-                                        <input type="hidden" name="location_lat" value="">
-                                        <input type="hidden" name="location_long" value="">
+                                        <input type="hidden" name="location_lat" value="{{$lead->location_lat ?? ''}}">
+                                        <input type="hidden" name="location_long" value="{{$lead->location_long ?? ''}}">
                                         @if($errors->has('address'))
                                         <div class="error">{{ $errors->first('address') }}</div>
                                         @endif
@@ -118,7 +118,7 @@ Zellaray Capital
                                     <div class="form-group col-md-4">
                                         <label class="mb-2 formlabel">Status</label>
                                         <select class="form-control" id="status" name="status">
-                                            <option value="0" @if($lead->status==0){{'selected'}}@endif</option>Pending</option>
+                                            <option value="0" @if($lead->status==0){{'selected'}}@endif</option>Offer Pending</option>
                                             <option value="1" @if($lead->status==1){{'selected'}}@endif>Active</option>
                                             <option value="2" @if($lead->status==2){{'selected'}}@endif>Under Contract</option>
                                             <option value="3" @if($lead->status==3){{'selected'}}@endif>Zellaray Under Contract</option>

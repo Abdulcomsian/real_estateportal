@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Clients;
+use Illuminate\Validation\Rule;
 use Auth;
 
 class CustomerController extends Controller
@@ -37,11 +38,11 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:35'],
-            'phone_number' => ['required', 'string', 'max:20'],
+            // 'phone_number' => ['required', 'string', 'max:20'],
             'target_location' => ['required', 'string'],
             'price_range' => ['required'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
-            'unit_size' => ['required', 'integer'],
+            'unit_size' => ['required'],
             // 'price_per_door' => ['required', 'integer'],
             'deal_type' => ['required'],
             // 'image' => ['required'],
@@ -94,15 +95,14 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:35'],
-            'phone_number' => ['required', 'string', 'max:20'],
+            // 'phone_number' => ['required', 'string', 'max:20'],
             'target_location' => ['required', 'string'],
-            'price_range' => ['required', 'integer'],
-            'email' => ['required', 'string', 'email', 'max:100', 'unique:clients'],
-            'unit_size' => ['required', 'integer'],
-            'cap_rate' => ['required', 'integer'],
-            'price_per_door' => ['required', 'string'],
+            'price_range' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:100', Rule::unique('clients')->ignore($id),],
+            'unit_size' => ['required'],
+            // 'price_per_door' => ['required', 'string'],
             'deal_type' => ['required'],
-            'image' => ['required'],
+            // 'image' => ['required'],
         ]);
         try {
             $input = $request->except('_token', 'image', '_method');
