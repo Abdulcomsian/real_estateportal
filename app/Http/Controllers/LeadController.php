@@ -146,56 +146,56 @@ class LeadController extends Controller
             // 'noi' => ['required'],
             // 'cap_rate' => ['required', 'integer'],
         ]);
-        try {
-            $leaddata = Lead::find($id);
-            $input = $request->except('_token', '_method');
-            $input['user_id'] = Auth::user()->id;
-            //documents will uploaded here
-            if ($file = $request->file('om_file')) {
-                removefile($leaddata, 'om_file');
-                $name = $this->upload_file($file);
-                $input['om_file'] = $name;
-            }
-            if ($file = $request->file('rent_roll_file')) {
-                removefile($leaddata, 'rent_roll_file');
-                $name = $this->upload_file($file);
-                $input['rent_roll_file'] = $name;
-            }
-            if ($file = $request->file('p_l_file')) {
-                removefile($leaddata, 'p_l_file');
-                $name = $this->upload_file($file);
-                $input['p_l_file'] = $name;
-            }
-            if ($file = $request->file('t12_file')) {
-                removefile($leaddata, 't12_file');
-                $name = $this->upload_file($file);
-                $input['t12_file'] = $name;
-            }
-            if ($file = $request->file('t3_file')) {
-                removefile($leaddata, 't3_file');
-                $name = $this->upload_file($file);
-                $input['t3_file'] = $name;
-            }
-            if ($file = $request->file('covid_file')) {
-                removefile($leaddata, 'covid_file');
-                $name = $this->upload_file($file);
-                $input['covid_file'] = $name;
-            }
-            if ($file = $request->file('capx_file')) {
-                removefile($leaddata, 'capx_file');
-                $name = $this->upload_file($file);
-                $input['capx_file'] = $name;
-            }
-            //end of document
-            $res = Lead::where('id', $id)->update($input);
-            if ($res) {
-                toastr()->success('Lead Updated Successfully!!');
-                return redirect('/leads');
-            }
-        } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
+        // try {
+        $leaddata = Lead::find($id);
+        $input = $request->except('_token', '_method');
+        $input['user_id'] = Auth::user()->id;
+        //documents will uploaded here
+        if ($file = $request->file('om_file')) {
+            removefile($leaddata, 'om_file');
+            $name = $this->upload_file($file);
+            $input['om_file'] = $name;
         }
+        if ($file = $request->file('rent_roll_file')) {
+            removefile($leaddata, 'rent_roll_file');
+            $name = $this->upload_file($file);
+            $input['rent_roll_file'] = $name;
+        }
+        if ($file = $request->file('p_l_file')) {
+            removefile($leaddata, 'p_l_file');
+            $name = $this->upload_file($file);
+            $input['p_l_file'] = $name;
+        }
+        if ($file = $request->file('t12_file')) {
+            removefile($leaddata, 't12_file');
+            $name = $this->upload_file($file);
+            $input['t12_file'] = $name;
+        }
+        if ($file = $request->file('t3_file')) {
+            removefile($leaddata, 't3_file');
+            $name = $this->upload_file($file);
+            $input['t3_file'] = $name;
+        }
+        if ($file = $request->file('covid_file')) {
+            removefile($leaddata, 'covid_file');
+            $name = $this->upload_file($file);
+            $input['covid_file'] = $name;
+        }
+        if ($file = $request->file('capx_file')) {
+            removefile($leaddata, 'capx_file');
+            $name = $this->upload_file($file);
+            $input['capx_file'] = $name;
+        }
+        //end of document
+        $res = Lead::where('id', $id)->update($input);
+        if ($res) {
+            toastr()->success('Lead Updated Successfully!!');
+            return redirect('/leads');
+        }
+        // } catch (\Exception $exception) {
+        //     toastr()->error('Something went wrong, try again');
+        //     return back();
+        // }
     }
     //delete lead
     public function destroy($id)

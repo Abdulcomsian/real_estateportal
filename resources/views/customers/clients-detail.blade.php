@@ -24,7 +24,7 @@ Zellaray Capital
               </div>
             </div>
             <div class="card-body">
-              <table class="table table-striped" cellspacing="0" width="100%">
+              <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th class="th-sm">Name</th>
@@ -45,13 +45,19 @@ Zellaray Capital
                     <td>{{$client->email}}</td>
                     <td>{{$client->phone_number}}</td>
                     <td>{{$client->target_location}}</td>
-                    <td>{{number_format($client->price_range, 2, ".", ",")}}</td>
-                    <td>{{$client->unit_size}}+</td>
-                    <td>{{number_format($client->cap_rate, 2, ".", ",")}}</td>
-                    <td>{{number_format($client->price_per_door, 2, ".", ",")}}</td>
-                    <td>{{$client->deal_type}}</td>
+                    <td>{{$client->price_range}}</td>
+                    <td>{{$client->unit_size}}</td>
+                    <td>{{number_format($client->cap_rate, 1, ".", ",")}}</td>
+                    <td>{{number_format($client->price_per_door, 1, ".", ",")}}</td>
                     <td>
+                      @foreach($client->deal_type as $type)
+                      <strong>{{$type}}</strong><br>
+                      @endforeach
+                    </td>
+                    <td>
+                      @if($client->file!=null)
                       <img class="img img-circle img-responsive" width="100px" height="100px" src="{{asset('client-images').'/'.$client->file}}" alt="icon">
+                      @endif
                     </td>
                   </tr>
 

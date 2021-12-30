@@ -8,14 +8,31 @@ Zellaray Capital
     height: auto;
     color: red;
   }
-  .slider-box {width: 90%;}
-label, input {border: none; display: inline-block; margin-right: -4px; vertical-align: top;}
-input {width: 70%}
-.slider {margin: 25px 0}
+
+  .slider-box {
+    width: 90%;
+  }
+
+  label,
+  input {
+    border: none;
+    display: inline-block;
+    margin-right: -4px;
+    vertical-align: top;
+  }
+
+  input {
+    width: 70%
+  }
+
+  .slider {
+    margin: 25px 0
+  }
 </style>
 
 @endsection
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
 @section('content')
 
 <div class="container-fluid">
@@ -25,7 +42,7 @@ input {width: 70%}
       <div class="clinic-s">
         <div class="row py-4 container-fluid ">
           <div class="col-md-12">
-            <div class="page-heading"> Clints</div>
+            <div class="page-heading"> Add Clients</div>
           </div>
         </div>
       </div>
@@ -56,7 +73,7 @@ input {width: 70%}
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Phone Number</label>
-                    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" required>
+                    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number">
                     @if($errors->has('phone_number'))
                     <div class="error">{{ $errors->first('phone_number') }}</div>
                     @endif
@@ -76,9 +93,9 @@ input {width: 70%}
                     @endif
                   </div>
                   <div class="form-group col-md-4">
-                   <!--  <label class="mb-2 formlabel">Price Range</label> -->
-                   <!--  <input type="number" class="form-control" id="price_range" name="price_range" placeholder="Price Range" required> -->
-                   <div class="slider-box">
+                    <!--  <label class="mb-2 formlabel">Price Range</label> -->
+                    <!--  <input type="number" class="form-control" id="price_range" name="price_range" placeholder="Price Range" required> -->
+                    <div class="slider-box">
                       <input type="text" id="priceRange" name="price_range" readonly>
                       <div id="price-range" class="slider"></div>
                     </div>
@@ -88,7 +105,7 @@ input {width: 70%}
                   </div>
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Unit Size</label>
-                    <input type="number" class="form-control" id="unit_size" name="unit_size" placeholder="Unit Size" required>
+                    <input type="text" class="form-control" id="unit_size" name="unit_size" placeholder="Unit Size" required>
                     @if($errors->has('unit_size'))
                     <div class="error">{{ $errors->first('unit_size') }}</div>
                     @endif
@@ -109,7 +126,7 @@ input {width: 70%}
                   </div> -->
                   <div class="form-group col-md-4">
                     <label class="mb-2 formlabel">Deal type</label>
-                    <select class="form-control" id="deal_type" name="deal_type" required>
+                    <select class="form-control chosen-select" id="deal_type" name="deal_type[]" multiple required>
                       <option value="">Select Deal Type</option>
                       <option value="core">Core</option>
                       <option value="stabiized">Stabilized</option>
@@ -127,7 +144,7 @@ input {width: 70%}
                   </div>
                   <div class="col-md-4">
                     <label class="mb-2 formlabel">Image</label>
-                    <input type="file" class="pt-2" id="image" name="image"  accept="image/*">
+                    <input type="file" class="pt-4" id="image" name="image" accept="image/*">
                     @if($errors->has('image'))
                     <div class="error">{{ $errors->first('image') }}</div>
                     @endif
@@ -156,20 +173,27 @@ input {width: 70%}
 
 @section('script')
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<script>
+  $(".chosen-select").chosen({
+    no_results_text: "Oops, nothing found!"
+  })
+</script>
 <script type="text/javascript">
-    $(function() {
-      $("#price-range").slider({
-        step: 500,
-        range: true, 
-        min: 0, 
-        max: 20000, 
-        values: [0, 20000], 
-        slide: function(event, ui)
-        {$("#priceRange").val(ui.values[0] + " - " + ui.values[1]);}
-      });
-      $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
-  
+  $(function() {
+    $("#price-range").slider({
+      step: 500,
+      range: true,
+      min: 0,
+      max: 20000,
+      values: [0, 20000],
+      slide: function(event, ui) {
+        $("#priceRange").val(ui.values[0] + " - " + ui.values[1]);
+      }
     });
+    $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
+
+  });
 </script>
 
 @endsection

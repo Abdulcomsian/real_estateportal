@@ -9,4 +9,7 @@ class Clients extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        'deal_type' => 'array',
+    ];
 }

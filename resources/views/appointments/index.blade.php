@@ -8,6 +8,10 @@ Zine Collective | International Marketing
 @section('content')
 @php
 $locations=array();
+foreach( $leadmarker as $le)
+{
+$locations[]=array('name'=>$le->address,'lat'=>$le->location_lat,'lng'=>$le->location_long,'id'=>$le->leadid);
+}
 @endphp
 <div class="container-fluid">
     <div class="row">
@@ -27,9 +31,6 @@ $locations=array();
                                 <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53170.948274008886!2d73.06785476748225!3d33.60052310805986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df95f7c0118bb1%3A0x773c0f0856728b7!2sSilk%20Centre%20Rawalpindi!5e0!3m2!1sen!2s!4v1634791617080!5m2!1sen!2s" width="100%" height="600" style="border:none;" allowfullscreen="" loading="lazy"></iframe> -->
                             </div>
                             @foreach($lead as $le)
-                            @php
-                            $locations[]=array('name'=>$le->address,'lat'=>$le->location_lat,'lng'=>$le->location_long,'id'=>$le->leadid);
-                            @endphp
                             <div class="col-lg-3 col-md-6 mb-30 bg-white">
                                 <div class="courses-item pt-3">
                                     <div class="courses-grid">
@@ -41,7 +42,7 @@ $locations=array();
                                             <div class="info-meta">
                                                 <ul>
                                                     <li class="ratings">
-                                                        <h5>${{number_format($le->ask_price, 2, ".", ",")}}</h5>
+                                                        <h5>${{number_format($le->ask_price, 1, ".", ",")}}</h5>
                                                     </li><br>
 
                                                     <li class="user">
@@ -195,7 +196,7 @@ $locations=array();
     }
 
     function formatToCurrency(amount) {
-        return "$" + parseInt(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+        return "$" + parseInt(amount).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, "$&,");
     };
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGZsEuXCZJyg8-h8jmSFpLUiXd9BIJsew&libraries=places&callback=initMap" async defer></script>
@@ -210,9 +211,7 @@ $locations=array();
     function initMap() {
         var directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer();
-        var chicago = new google.maps.LatLng({{
-                $lead[0]->location_lat ?? '38.685516'}},{{
-                $lead[0]->location_long ?? '-101.073324'}});
+        var chicago = new google.maps.LatLng({{$lead[0]->location_lat ?? '38.685516'}}, {{$lead[0]->location_long ?? '-101.073324'}});
         var mapOptions = {
             zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
