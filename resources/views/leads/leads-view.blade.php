@@ -83,6 +83,7 @@ Zellaray Capital
                     </th>
                     <th class="th-sm">Cap Rate
                     </th>
+                    <th class="th-sm">Date Uploaded</th>
                     <th class="th-sm">Status</th>
                     <th class="th-sm">Action
                     </th>
@@ -96,6 +97,7 @@ Zellaray Capital
                     <td>{{$lead->markete_location}}</td>
                     <td>${{number_format($lead->ask_price, 1, ".", ",")}}</td>
                     <td>${{number_format((int)$lead->cap_rate, 1, ".", ",")}}</td>
+                    <td>{{$lead->created_at ?? ''}}</td>
                     <td style="color:{{lead_status($lead->status)['color']}}">{{lead_status($lead->status)['name']}}</td>
                     <td>
                       <a data-toggle="tooltip" href="{{route('leads.edit',$lead->id)}}" title="Edit">

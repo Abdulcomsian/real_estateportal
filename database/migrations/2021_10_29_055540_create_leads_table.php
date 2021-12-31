@@ -19,7 +19,7 @@ class CreateLeadsTable extends Migration
             $table->string('address')->nullable();
             $table->string('markete_location')->nullable();
             $table->float('ask_price')->nullable();
-            $table->float('price_per_door')->nullable();
+            $table->string('price_per_door')->nullable();
             $table->bigInteger('gross_revenue')->nullable();
             $table->string('noi')->nullable();
             $table->string('cap_rate')->nullable();

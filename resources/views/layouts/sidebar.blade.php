@@ -66,7 +66,7 @@
                             </a>
                             <a class="nav-link bgcolor" href="{{route('leads.pending')}}">
                                 <i><img src="{{asset('images/file.png')}}"></i>
-                                <span>Pending Deals</span>
+                                <span>Offers Pending</span>
                             </a>
                             <a class="nav-link bgcolor" href="{{route('leads.under.contract')}}">
                                 <i><img src="{{asset('images/file.png')}}"></i>

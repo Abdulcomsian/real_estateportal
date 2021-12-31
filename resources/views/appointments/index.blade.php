@@ -196,7 +196,9 @@ $locations[]=array('name'=>$le->address,'lat'=>$le->location_lat,'lng'=>$le->loc
     }
 
     function formatToCurrency(amount) {
-        return "$" + parseInt(amount).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+        letter='';
+        letter = amount.toString().replace(/[^A-Za-z]/g, '');
+        return "$" + parseInt(amount).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, "$&,")+letter;
     };
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGZsEuXCZJyg8-h8jmSFpLUiXd9BIJsew&libraries=places&callback=initMap" async defer></script>

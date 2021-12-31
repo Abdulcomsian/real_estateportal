@@ -121,13 +121,13 @@ Zellaray Capital
                                             <option value="">Select Deal Type</option>
                                             <option value="core" @if(in_array("core", $client->deal_type)) {{'selected'}}@endif>Core</option>
                                             <option value="stabiized" @if(in_array("stabiized", $client->deal_type)) {{'selected'}}@endif>Stabilized</option>
-                                            <option value="value-add">Value-Add</option>
-                                            <option value="heavy-left">Heavy Lift</option>
-                                            <option value="development">Development</option>
-                                            <option value="mixed-use">Mixed Use</option>
-                                            <option value="retail">Retail</option>
-                                            <option value="land">Land</option>
-                                            <option value="add-any">Add Any</option>
+                                            <option value="value-add" @if(in_array("value-add", $client->deal_type)) {{'selected'}}@endif>Value-Add</option>
+                                            <option value="heavy-left" @if(in_array("heavy-left", $client->deal_type)) {{'selected'}}@endif>Heavy Lift</option>
+                                            <option value="development" @if(in_array("development", $client->deal_type)) {{'selected'}}@endif>Development</option>
+                                            <option value="mixed-use" @if(in_array("mixed-use", $client->deal_type)) {{'selected'}}@endif>Mixed Use</option>
+                                            <option value="retail" @if(in_array("retail", $client->deal_type)) {{'selected'}}@endif>Retail</option>
+                                            <option value="land" @if(in_array("land", $client->deal_type)) {{'selected'}}@endif>Land</option>
+                                            <option value="add-any" @if(in_array("add-any", $client->deal_type)) {{'selected'}}@endif>Add Any</option>
                                         </select>
                                         @if($errors->has('deal_type'))
                                         <div class="error">{{ $errors->first('deal_type') }}</div>
@@ -191,6 +191,20 @@ Zellaray Capital
         });
         $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
 
+    });
+</script>
+<script>
+    $("#unit_size").on("keypress keyup blur", function(event) {
+        $(this).val($(this).val().replace(/[^0-9\.|\,/\+/]/g, ''));
+        if (event.which == 44) {
+            return true;
+        }
+        if (event.which == 43) {
+            return true;
+        }
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
     });
 </script>
 @endsection
