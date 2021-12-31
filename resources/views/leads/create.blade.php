@@ -271,13 +271,29 @@ Zellaray Capital
 </script>
 
 <script>
-  $("#ask_price,#price_per_door,#cap_rate").on("keypress keyup blur", function(event) {
+  $("#ask_price,#cap_rate").on("keypress keyup blur", function(event) {
     $(this).val($(this).val().replace(/[^0-9\.|\,]/g, ''));
     if (event.which == 44) {
       return true;
     }
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
 
+      event.preventDefault();
+    }
+  });
+
+  $("#price_per_door").on("keypress keyup blur", function(event) {
+    $(this).val($(this).val().replace(/[^0-9\.|\,/\m/\k/]/g, ''));
+    if (event.which == 44) {
+      return true;
+    }
+    if (event.which == 107) {
+      return true;
+    }
+    if (event.which == 109) {
+      return true;
+    }
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
   });
